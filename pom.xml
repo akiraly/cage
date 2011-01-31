@@ -30,6 +30,17 @@
 		</developer>
 	</developers>
 
+	<scm>
+		<connection>scm:git:gitolite@192.168.1.4:cage</connection>
+	</scm>
+
+	<distributionManagement>
+		<repository>
+			<id>archiva.staging</id>
+			<url>http://192.168.1.4:8080/archiva/repository/staging/</url>
+		</repository>
+	</distributionManagement>
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -121,6 +132,11 @@
 						<autoVersionSubmodules>true</autoVersionSubmodules>
 					</configuration>
 				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-deploy-plugin</artifactId>
+					<version>2.5</version>
+				</plugin>
 			</plugins>
 		</pluginManagement>
 		<plugins>
@@ -136,63 +152,27 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-source-plugin</artifactId>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-gpg-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+			</plugin>
 		</plugins>
 	</build>
 
-	<!-- core modules, part of realase -->
 	<modules>
 		<module>cage</module>
+		<module>cage-examples-parent</module>
 	</modules>
-
-	<scm>
-		<connection>scm:git:gitolite@192.168.1.4:cage</connection>
-	</scm>
-
-	<profiles>
-		<profile>
-			<!-- all modules including ones not part of release -->
-			<id>cage-all</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
-			<modules>
-				<module>cage-examples-parent</module>
-			</modules>
-		</profile>
-
-		<profile>
-			<!-- to make release run something like this: -->
-			<!-- mvn clean deploy -P cage-release -Dgpg.passphrase=${passphrase} -->
-			<!-- mvn release:clean release:prepare -P cage-release -Dgpg.passphrase=${passphrase} -->
-			<!-- mvn release:perform -P cage-release -Dgpg.passphrase=${passphrase} -->
-			<id>cage-release</id>
-			<activation>
-				<activeByDefault>false</activeByDefault>
-			</activation>
-
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-javadoc-plugin</artifactId>
-					</plugin>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-gpg-plugin</artifactId>
-					</plugin>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-release-plugin</artifactId>
-					</plugin>
-				</plugins>
-			</build>
-
-			<distributionManagement>
-				<repository>
-					<id>archiva.staging</id>
-					<url>http://192.168.1.4:8080/archiva/repository/staging/</url>
-				</repository>
-			</distributionManagement>
-		</profile>
-	</profiles>
+	<!-- to make release run something like this: -->
+	<!-- mvn clean deploy -Dgpg.passphrase=${passphrase} -->
+	<!-- mvn release:clean release:prepare -Darguments="-Dgpg.passphrase=${passphrase}" -->
+	<!-- mvn release:perform -Darguments="-Dgpg.passphrase=${passphrase}" -->
 </project>
