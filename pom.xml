@@ -137,6 +137,11 @@
 					<artifactId>maven-deploy-plugin</artifactId>
 					<version>2.5</version>
 				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-install-plugin</artifactId>
+					<version>2.3.1</version>
+				</plugin>
 			</plugins>
 		</pluginManagement>
 		<plugins>
@@ -172,7 +177,5 @@
 		<module>cage-examples-parent</module>
 	</modules>
 	<!-- to make release run something like this: -->
-	<!-- mvn clean deploy -Dgpg.passphrase=${passphrase} -->
-	<!-- mvn release:clean release:prepare -Darguments="-Dgpg.passphrase=${passphrase}" -->
-	<!-- mvn release:perform -Darguments="-Dgpg.passphrase=${passphrase}" -->
+	<!-- mvn release:clean release:prepare release:perform -Darguments="-Dgpg.passphrase=${passphrase}" -->
 </project>
