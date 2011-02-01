@@ -207,4 +207,5 @@
 	</modules>
 	<!-- to make release run something like this: -->
 	<!-- mvn release:clean release:prepare release:perform -Darguments="-Dgpg.passphrase=${passphrase}" -->
+	<!-- NOTE: examples are not deployed but they are still installed to the local repository during the release -->
 </project>
