@@ -235,7 +235,8 @@ public class Cage {
 		Random rnd = new Random();
 		return new Cage(new Painter(290, 80, null, null, true, true, true,
 				false, rnd), null, new ConstantColorGenerator(Color.BLACK),
-				null, Cage.DEFAULT_COMPRESS_RATIO, null, rnd);
+				null, Cage.DEFAULT_COMPRESS_RATIO, new RandomWordGenerator(rnd,
+						6, 2, RandomWordGenerator.Y_LETTER_SET), rnd);
 	}
 
 	public Painter getPainter() {

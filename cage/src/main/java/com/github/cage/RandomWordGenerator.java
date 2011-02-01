@@ -28,8 +28,10 @@ import java.util.Random;
  * 
  */
 public class RandomWordGenerator implements IGenerator<String> {
-	public static final char[][] ENGLISH_LETTERS = new char[][] {
+	public static final char[][] G_LETTER_SET = new char[][] {
 			"aeiou".toCharArray(), "bcdfghjklmnpqrstxvwz".toCharArray() };
+	public static final char[][] Y_LETTER_SET = new char[][] { "abcdefghjkmnpqrstxuvwzABCDEFGHJKLMNPQRSTXUVWZ23456789"
+			.toCharArray() };
 
 	private final Random rnd;
 	private final int minLength;
@@ -43,7 +45,7 @@ public class RandomWordGenerator implements IGenerator<String> {
 	 *            random generator to be used, can be null
 	 */
 	public RandomWordGenerator(Random rnd) {
-		this(rnd, 7);
+		this(rnd, 8, 2);
 	}
 
 	/**
@@ -70,7 +72,7 @@ public class RandomWordGenerator implements IGenerator<String> {
 	 *            random generator to be used, can be null
 	 */
 	public RandomWordGenerator(Random rnd, int minLength, int delta) {
-		this(rnd, minLength, delta, ENGLISH_LETTERS);
+		this(rnd, minLength, delta, G_LETTER_SET);
 	}
 
 	/**
