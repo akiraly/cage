@@ -9,7 +9,7 @@
 
 	<name>CAptcha GEnerator Parent</name>
 	<description>
-		Cage is a CAPTCHA image generation java library.
+Cage is a CAPTCHA image generator java library. It is fast, small and simple.
 	</description>
 
 	<inceptionYear>2011</inceptionYear>
