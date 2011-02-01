@@ -33,7 +33,7 @@ public class HomePage extends WebPage {
 	private static final Cage cage = new Cage();
 
 	private String token = cage.getTokenGenerator().next();
-	private String captcha = "áéíóöőúüű";
+	private String captcha;
 	private boolean showGoodResult;
 	private boolean showBadResult;
 
@@ -72,7 +72,7 @@ public class HomePage extends WebPage {
 					@Override
 					protected void onComponentTag(ComponentTag tag) {
 						super.onComponentTag(tag);
-						// tag.put("value", "");
+						tag.put("value", "");
 					};
 				}.add(new StringValidator() {
 					private static final long serialVersionUID = 3888825725858419028L;
