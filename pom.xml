@@ -27,12 +27,18 @@ Cage is a CAPTCHA image generator java library. It is fast, small and simple.
 			<id>akiraly</id>
 			<name>Király Attila</name>
 			<email>kiralyattila.hu@gmail.com</email>
+			<timezone>+1</timezone>
 		</developer>
 	</developers>
 
 	<scm>
-		<connection>scm:git:gitolite@192.168.1.4:cage</connection>
+		<connection>scm:git:git@github.com:akiraly/cage.git</connection>
 	</scm>
+
+	<issueManagement>
+		<system>github</system>
+		<url>https://github.com/akiraly/cage/issues</url>
+	</issueManagement>
 
 	<distributionManagement>
 		<repository>
@@ -207,5 +213,6 @@ Cage is a CAPTCHA image generator java library. It is fast, small and simple.
 	</modules>
 	<!-- to make release run something like this: -->
 	<!-- mvn release:clean release:prepare release:perform -Darguments="-Dgpg.passphrase=${passphrase}" -->
-	<!-- NOTE: examples are not deployed but they are still installed to the local repository during the release -->
+	<!-- NOTE: examples are not deployed but they are still installed to the 
+		local repository during the release -->
 </project>
