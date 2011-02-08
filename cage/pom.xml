@@ -18,10 +18,33 @@ Its goal is to generate images that are easy to read for a human but impossible
 or at least very hard for a computer.
 	</description>
 
+	<!-- some information is doubled so it is generated correctly in site -->
+	<url>http://akiraly.github.com/cage</url>
+	<scm>
+		<url>https://github.com/akiraly/cage</url>
+		<connection>scm:git:git://github.com/akiraly/cage.git</connection>
+		<developerConnection>scm:git:git@github.com:akiraly/cage.git</developerConnection>
+	</scm>
+
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 		</dependency>
 	</dependencies>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-site-plugin</artifactId>
+					<configuration>
+						<generateReports>true</generateReports>
+						<generateSitemap>true</generateSitemap>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
 </project>
