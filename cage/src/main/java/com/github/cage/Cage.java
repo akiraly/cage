@@ -55,7 +55,14 @@ import javax.imageio.stream.ImageOutputStream;
  * 
  */
 public class Cage {
+	/**
+	 * Default compress ratio for image encoders.
+	 */
 	public static final Float DEFAULT_COMPRESS_RATIO = 0.5f;
+
+	/**
+	 * Default image encoding format.
+	 */
 	public static final String DEFAULT_FORMAT = "jpeg";
 
 	private final Painter painter;
@@ -239,26 +246,44 @@ public class Cage {
 						6, 2, RandomWordGenerator.Y_LETTER_SET), rnd);
 	}
 
+	/**
+	 * @return object used to draw the image, not null
+	 */
 	public Painter getPainter() {
 		return painter;
 	}
 
+	/**
+	 * @return font generator used to choose a font, not null
+	 */
 	public IGenerator<Font> getFonts() {
 		return fonts;
 	}
 
+	/**
+	 * @return foreground generator used to choose a text color, not null
+	 */
 	public IGenerator<Color> getForegrounds() {
 		return foregrounds;
 	}
 
+	/**
+	 * @return used image encoding format, like "jpeg", not null
+	 */
 	public String getFormat() {
 		return format;
 	}
 
+	/**
+	 * @return compress ratio used by image encoding, can be null
+	 */
 	public Float getCompressRatio() {
 		return compressRatio;
 	}
 
+	/**
+	 * @return token generator to produce strings for the image, not null
+	 */
 	public IGenerator<String> getTokenGenerator() {
 		return tokenGenerator;
 	}

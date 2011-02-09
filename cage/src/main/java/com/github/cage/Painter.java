@@ -43,10 +43,27 @@ public class Painter {
 	 * Enumeration for different image quality levels.
 	 */
 	public static enum Quality {
-		MIN, DEFAULT, MAX
+		/**
+		 * Rendering hints should be set to minimum quality
+		 */
+		MIN, /**
+		 * Rendering hints should be not set so they use the default
+		 * quality
+		 */
+		DEFAULT, /**
+		 * Rendering hints should be set to maximum quality
+		 */
+		MAX
 	}
 
+	/**
+	 * Default image width. It is the same as used by Google captcha.
+	 */
 	public static final int DEFAULT_WIDTH = 200;
+
+	/**
+	 * Default image height. It is the same as used by Google captcha.
+	 */
 	public static final int DEFAULT_HEIGHT = 70;
 
 	private final int width;
@@ -148,19 +165,14 @@ public class Painter {
 
 		Graphics g = img.getGraphics();
 		try {
-			if (!(g instanceof Graphics2D))
-				throw new IllegalStateException("Image (" + img
-						+ ") has a graphics (" + g
-						+ ") that is not an instance of Graphics2D.");
-			Graphics2D g2 = (Graphics2D) g;
-			configureGraphics(g2, font, fGround);
+			Graphics2D g2 = configureGraphics(g, font, fGround);
 
 			draw(g2, text);
-
-			img = postProcess(img);
 		} finally {
 			g.dispose();
 		}
+
+		img = postProcess(img);
 
 		return img;
 	}
@@ -168,7 +180,7 @@ public class Painter {
 	/**
 	 * Creates a new image to draw upon.
 	 * 
-	 * @return new image
+	 * @return new image, not null
 	 */
 	protected BufferedImage createImage() {
 		return new BufferedImage(width, height, BufferedImage.TYPE_3BYTE_BGR);
@@ -177,14 +189,23 @@ public class Painter {
 	/**
 	 * Configures graphics object before drawing text on it.
 	 * 
-	 * @param g2
-	 *            to be configured
+	 * @param g
+	 *            to be configured must be an instance of {@link Graphics2D},
+	 *            not null
 	 * @param font
-	 *            to be used for the text
+	 *            to be used for the text, not null
 	 * @param fGround
-	 *            to be used for the text
+	 *            to be used for the text, not null
+	 * 
+	 * @return g casted to {@link Graphics2D} or throws exception if g is not
+	 *         instance of {@link Graphics2D}.
 	 */
-	protected void configureGraphics(Graphics2D g2, Font font, Color fGround) {
+	protected Graphics2D configureGraphics(Graphics g, Font font, Color fGround) {
+		if (!(g instanceof Graphics2D))
+			throw new IllegalStateException("Graphics (" + g
+					+ ") that is not an instance of Graphics2D.");
+		Graphics2D g2 = (Graphics2D) g;
+
 		configureGraphicsQuality(g2);
 
 		g2.setColor(fGround);
@@ -192,13 +213,15 @@ public class Painter {
 		g2.setFont(font);
 
 		g2.clearRect(0, 0, width, height);
+
+		return g2;
 	}
 
 	/**
 	 * Sets quality related hints based on the quality field of this object.
 	 * 
 	 * @param g2
-	 *            to be configured
+	 *            to be configured, not null
 	 */
 	protected void configureGraphicsQuality(Graphics2D g2) {
 		switch (quality) {
@@ -335,9 +358,14 @@ public class Painter {
 	 */
 	protected BufferedImage postProcess(BufferedImage img) {
 		if (rippleEnabled) {
-			Rippler op = new Rippler(rnd.nextDouble() * 2 * Math.PI,
-					(1 + rnd.nextDouble() * 3) * Math.PI,
-					img.getHeight() / 10.0);
+			Rippler.AxisConfig vertical = new Rippler.AxisConfig(
+					rnd.nextDouble() * 2 * Math.PI, (1 + rnd.nextDouble() * 2)
+							* Math.PI, img.getHeight() / 10.0);
+			Rippler.AxisConfig horizontal = new Rippler.AxisConfig(
+					rnd.nextDouble() * 2 * Math.PI, (1 + rnd.nextDouble() * 3)
+							* Math.PI, img.getWidth() / 100.0);
+			Rippler op = new Rippler(vertical, horizontal);
+
 			img = op.filter(img, createImage());
 		}
 		if (blurEnabled) {
@@ -345,6 +373,7 @@ public class Painter {
 			fillBlurArray(blurArray);
 			ConvolveOp op = new ConvolveOp(new Kernel(3, 3, blurArray),
 					ConvolveOp.EDGE_NO_OP, null);
+
 			img = op.filter(img, createImage());
 		}
 		return img;
@@ -364,34 +393,59 @@ public class Painter {
 			array[fi] /= sum;
 	}
 
+	/**
+	 * @return width of the image
+	 */
 	public int getWidth() {
 		return width;
 	}
 
+	/**
+	 * @return height of the image
+	 */
 	public int getHeight() {
 		return height;
 	}
 
+	/**
+	 * @return background color of the image, not null
+	 */
 	public Color getBackground() {
 		return background;
 	}
 
+	/**
+	 * @return quality level of the image, not null
+	 */
 	public Quality getQuality() {
 		return quality;
 	}
 
+	/**
+	 * @return true if the image will be rippled (waved)
+	 */
 	public boolean isRippleEnabled() {
 		return rippleEnabled;
 	}
 
+	/**
+	 * @return true if the image will be blurred
+	 */
 	public boolean isBlurEnabled() {
 		return blurEnabled;
 	}
 
+	/**
+	 * @return true if outline shadow for text will be drawn on the image
+	 */
 	public boolean isOutlineEnabled() {
 		return outlineEnabled;
 	}
 
+	/**
+	 * @return true if the text letters will be rotated before drawn on the
+	 *         image
+	 */
 	public boolean isRotateEnabled() {
 		return rotateEnabled;
 	}

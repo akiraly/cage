@@ -25,48 +25,93 @@ import java.awt.image.BufferedImage;
  * 
  */
 public class Rippler {
-	private final double start;
-
-	private final double length;
-
-	private final double amplitude;
-
 	/**
-	 * Constructor
-	 * 
-	 * @param start
-	 *            the starting x offset to generate sinus values. Should be
-	 *            between 0 and 2 * {@link Math#PI}.
-	 * @param length
-	 *            the length of x to be used to generate sinus values. Should be
-	 *            between 0 and 4 * {@link Math#PI}.
-	 * @param amplitude
-	 *            the maximum y value, if it is too big, some important parts of
-	 *            the image (like the text) can "wave" out on the top or on the
-	 *            bottom of the image.
+	 * Class to respresent wave tranforming information for an axis.
 	 */
-	public Rippler(double start, double length, double amplitude) {
-		this.start = normalize(start, 2);
-		this.length = normalize(length, 4);
-		this.amplitude = amplitude;
+	public static class AxisConfig {
+		private final double start;
+
+		private final double length;
+
+		private final double amplitude;
+
+		/**
+		 * Constructor
+		 * 
+		 * @param start
+		 *            the starting x offset to generate wave values. Should be
+		 *            between 0 and 2 * {@link Math#PI}.
+		 * @param length
+		 *            the length of x to be used to generate wave values. Should
+		 *            be between 0 and 4 * {@link Math#PI}.
+		 * @param amplitude
+		 *            the maximum y value, if it is too big, some important
+		 *            parts of the image (like the text) can "wave" out on the
+		 *            top or on the bottom of the image.
+		 */
+		public AxisConfig(double start, double length, double amplitude) {
+			this.start = normalize(start, 2);
+			this.length = normalize(length, 4);
+			this.amplitude = amplitude;
+		}
+
+		/**
+		 * Normalizes parameter to fall into [0, multi * {@link Math#PI}]
+		 * 
+		 * @param a
+		 *            to be normalized
+		 * @param multi
+		 *            multiplicator used for end value
+		 * @return normalized value
+		 */
+		protected double normalize(double a, int multi) {
+			double piMulti = multi * Math.PI;
+
+			a = Math.abs(a);
+			double d = Math.floor(a / piMulti);
+
+			return a - d * piMulti;
+		}
+
+		/**
+		 * @return wave part start value
+		 */
+		public double getStart() {
+			return start;
+		}
+
+		/**
+		 * @return wave part length
+		 */
+		public double getLength() {
+			return length;
+		}
+
+		/**
+		 * @return amplitude used to transform the wave part
+		 */
+		public double getAmplitude() {
+			return amplitude;
+		}
 	}
 
+	private final AxisConfig vertical;
+
+	private final AxisConfig horizontal;
+
 	/**
-	 * Normalizes parameter to fall into [0, multi * {@link Math#PI}]
+	 * Constructor.
 	 * 
-	 * @param a
-	 *            to be normalized
-	 * @param multi
-	 *            multiplicator used for end value
-	 * @return normalized value
+	 * @param vertical
+	 *            config to calculate waving deltas from x axis (so to modify y
+	 *            values), not null
+	 * @param horizontal
+	 *            config to calculate waving deltas from x axis (so to modify x
+	 *            values), not null
 	 */
-	protected double normalize(double a, int multi) {
-		double piMulti = multi * Math.PI;
-
-		a = Math.abs(a);
-		double d = Math.floor(a / piMulti);
-
-		return a - d * piMulti;
+	public Rippler(AxisConfig vertical, AxisConfig horizontal) {
+		this.vertical = vertical;
+		this.horizontal = horizontal;
 	}
 
 	/**
@@ -79,31 +124,57 @@ public class Rippler {
 	 * @return dest is returned
 	 */
 	public BufferedImage filter(BufferedImage src, BufferedImage dest) {
+		int width = src.getWidth();
 		int height = src.getHeight();
-		double period = length / src.getWidth();
-		double amplitude = src.getHeight() / 10.0;
 
-		for (int x = 0; x < src.getWidth(); x++) {
-			int delta = (int) Math.round(amplitude
-					* Math.sin(start + x * period));
+		int[] verticalDelta = calcDeltaArray(vertical, width);
+
+		int[] horizontalDelta = calcDeltaArray(horizontal, height);
+
+		for (int x = 0; x < width; x++)
 			for (int y = 0; y < height; y++) {
-				int ny = (y + delta + height) % height;
-				dest.setRGB(x, ny, src.getRGB(x, y));
+				int ny = (y + verticalDelta[x] + height) % height;
+				int nx = (x + horizontalDelta[ny] + width) % width;
+				dest.setRGB(nx, ny, src.getRGB(x, y));
 			}
-		}
 
 		return dest;
 	}
 
-	public double getStart() {
-		return start;
+	/**
+	 * Calculates wave delta array.
+	 * 
+	 * @param axisConfig
+	 *            config object to transform the wave, not null
+	 * @param num
+	 *            number of points needed, positive
+	 * @return the calculated num length delta array
+	 */
+	protected int[] calcDeltaArray(AxisConfig axisConfig, int num) {
+		int[] delta = new int[num];
+
+		double start = axisConfig.getStart();
+		double period = axisConfig.getLength() / num;
+		double amplitude = axisConfig.getAmplitude();
+
+		for (int fi = 0; fi < num; fi++)
+			delta[fi] = (int) Math.round(amplitude
+					* Math.sin(start + fi * period));
+
+		return delta;
 	}
 
-	public double getLength() {
-		return length;
+	/**
+	 * @return vertical config, not null
+	 */
+	public AxisConfig getVertical() {
+		return vertical;
 	}
 
-	public double getAmplitude() {
-		return amplitude;
+	/**
+	 * @return horizontal config, not null
+	 */
+	public AxisConfig getHorizontal() {
+		return horizontal;
 	}
 }

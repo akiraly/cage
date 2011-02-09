@@ -28,8 +28,15 @@ import java.util.Random;
  * 
  */
 public class RandomWordGenerator implements IGenerator<String> {
+	/**
+	 * Letter set for the Google template
+	 */
 	public static final char[][] G_LETTER_SET = new char[][] {
 			"aeiou".toCharArray(), "bcdfghjklmnpqrstxvwz".toCharArray() };
+
+	/**
+	 * Letter set for the Yahoo template
+	 */
 	public static final char[][] Y_LETTER_SET = new char[][] { "abcdefghjkmnpqrstxuvwzABCDEFGHJKLMNPQRSTXUVWZ23456789"
 			.toCharArray() };
 
@@ -112,10 +119,16 @@ public class RandomWordGenerator implements IGenerator<String> {
 		return new String(word);
 	}
 
+	/**
+	 * @return minimum length of generated tokens
+	 */
 	public int getMinLength() {
 		return minLength;
 	}
 
+	/**
+	 * @return maximum length difference to add to the minimum length
+	 */
 	public int getDelta() {
 		return delta;
 	}

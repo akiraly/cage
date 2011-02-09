@@ -22,13 +22,32 @@ import java.util.Random;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.github.cage.Painter.Quality;
+
+/**
+ * General testing of the {@link Cage} and its components.
+ * 
+ * @author akiraly
+ * 
+ */
 public class CageTest {
 
+	/**
+	 * Tests default settings.
+	 * 
+	 * @throws IOException
+	 */
 	@Test
 	public void testDefault() throws IOException {
 		testSize(new Cage());
 	}
 
+	/**
+	 * Tests {@link Quality#MAX} setting.
+	 * 
+	 * @throws IOException
+	 *             image could not be serialized
+	 */
 	@Test
 	public void testMax() throws IOException {
 		Random rnd = new Random();
@@ -38,16 +57,37 @@ public class CageTest {
 				null, Cage.DEFAULT_COMPRESS_RATIO, null, rnd));
 	}
 
+	/**
+	 * Tests Google template.
+	 * 
+	 * @throws IOException
+	 *             image could not be serialized
+	 */
 	@Test
 	public void testG() throws IOException {
 		testSize(Cage.likeG());
 	}
 
+	/**
+	 * Tests Yahoo template.
+	 * 
+	 * @throws IOException
+	 *             image could not be serialized
+	 */
 	@Test
 	public void testY() throws IOException {
 		testSize(Cage.likeY());
 	}
 
+	/**
+	 * Tests the passed object. Generates several captcha images and measures
+	 * their size.
+	 * 
+	 * @param cage
+	 *            object to be tested
+	 * @throws IOException
+	 *             image could not be serialized
+	 */
 	protected void testSize(Cage cage) throws IOException {
 		for (int fi = 0; fi < 100; fi++) {
 			ByteArrayOutputStream baos = new ByteArrayOutputStream(1024);
