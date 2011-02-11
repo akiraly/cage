@@ -21,7 +21,6 @@ import java.awt.Font;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.github.cage.image.Painter;
 import com.github.cage.image.Painter.Quality;
 
 /**
@@ -35,9 +34,9 @@ public class PainterSpeedTest {
 	private final Font font = new Font(Font.SANS_SERIF, Font.PLAIN,
 			Painter.DEFAULT_HEIGHT / 2);
 
-	private final int warmUpNum = 1000;
+	private final static int warmUpNum = 1000;
 
-	private final int sampleNum = 5000;
+	private final static int sampleNum = 5000;
 
 	/**
 	 * Tests with {@link Quality#DEFAULT} setting.
