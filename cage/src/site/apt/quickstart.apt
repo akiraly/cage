@@ -31,5 +31,5 @@ public class QuickStart {
 }
 +---
 
-	See the {{{./apidocs/index.html}javadoc}} or the
-	{{{./apidocs/index.html}examples}} to learn more.
+	See the {{{./examples.html}examples}} or the
+	{{{./apidocs/index.html}javadoc}} to learn more.

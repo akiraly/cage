@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/DECORATION/1.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/DECORATION/1.0.0 http://maven.apache.org/xsd/decoration-1.0.0.xsd"
-	name="Cage - CAptcha GEnerator">
+	name="Cage - Captcha Generator">
 	<bannerLeft>
 		<name>Cage - CAptcha GEnerator java library</name>
 		<href>${project.url}/index.html</href>
@@ -20,7 +20,11 @@
 			<item name="About" href="index.html" />
 			<item name="QuickStart" href="quickstart.html" />
 			<item name="Templates" href="templates.html" />
-			<item name="Examples" href="examples.html" />
+			<item name="Examples" href="examples.html">
+				<item name="Simple" href="e01_simple.html" />
+				<item name="Servlet" href="e02_servlet.html" />
+				<item name="Wicket" href="e03_wicket.html" />
+			</item>
 			<item name="Download" href="download.html" />
 			<item name="Javadoc" href="apidocs/index.html" />
 		</menu>
