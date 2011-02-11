@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.cage;
+package com.github.cage.image;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -21,7 +21,8 @@ import java.awt.Font;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.github.cage.Painter.Quality;
+import com.github.cage.image.Painter;
+import com.github.cage.image.Painter.Quality;
 
 /**
  * Performance test for image generation ({@link Painter}). This might not pass

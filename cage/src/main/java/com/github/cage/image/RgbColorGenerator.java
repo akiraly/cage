@@ -13,10 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.cage;
+package com.github.cage.image;
 
 import java.awt.Color;
 import java.util.Random;
+
+import com.github.cage.IGenerator;
 
 /**
  * Random RGB {@link Color} object generator. The returned {@link Color}-s are
@@ -45,7 +47,7 @@ public class RgbColorGenerator implements IGenerator<Color> {
 
 		for (int fi = 0; fi < c.length; fi++)
 			if (fi == i)
-				c[fi] = rnd.nextInt(81);
+				c[fi] = rnd.nextInt(71);
 			else
 				c[fi] = rnd.nextInt(256);
 

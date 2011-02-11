@@ -20,6 +20,8 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 import com.github.cage.Cage;
+import com.github.cage.GCage;
+import com.github.cage.YCage;
 
 /**
  * An example console application that generates a few hundreds captcha images
@@ -31,10 +33,10 @@ import com.github.cage.Cage;
 public class App {
 
 	public static void main(String[] args) throws IOException {
-		generate(Cage.likeG(), 10, "cg1", ".jpg", "colding");
-		generate(Cage.likeY(), 10, "cy1", ".jpg", "eT6wLAH");
-		generate(Cage.likeG(), 100, "cg2", ".jpg", null);
-		generate(Cage.likeY(), 100, "cy2", ".jpg", null);
+		generate(new GCage(), 10, "cg1", ".jpg", "colding");
+		generate(new YCage(), 10, "cy1", ".jpg", "eT6wLAH");
+		generate(new GCage(), 100, "cg2", ".jpg", null);
+		generate(new YCage(), 100, "cy2", ".jpg", null);
 	}
 
 	protected static void generate(Cage cage, int num, String namePrefix,

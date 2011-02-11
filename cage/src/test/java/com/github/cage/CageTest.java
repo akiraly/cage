@@ -22,7 +22,8 @@ import java.util.Random;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.github.cage.Painter.Quality;
+import com.github.cage.image.Painter;
+import com.github.cage.image.Painter.Quality;
 
 /**
  * General testing of the {@link Cage} and its components.
@@ -58,25 +59,25 @@ public class CageTest {
 	}
 
 	/**
-	 * Tests Google template.
+	 * Tests G template.
 	 * 
 	 * @throws IOException
 	 *             image could not be serialized
 	 */
 	@Test
 	public void testG() throws IOException {
-		testSize(Cage.likeG());
+		testSize(new GCage());
 	}
 
 	/**
-	 * Tests Yahoo template.
+	 * Tests Y template.
 	 * 
 	 * @throws IOException
 	 *             image could not be serialized
 	 */
 	@Test
 	public void testY() throws IOException {
-		testSize(Cage.likeY());
+		testSize(new YCage());
 	}
 
 	/**

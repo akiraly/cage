@@ -24,6 +24,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.github.cage.Cage;
+import com.github.cage.GCage;
 
 /**
  * An example servlet that generates captcha images directly to the response
@@ -35,7 +36,7 @@ import com.github.cage.Cage;
 public class CaptchaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1490947492185481844L;
 
-	private static final Cage cage = Cage.likeG();
+	private static final Cage cage = new GCage();
 
 	public static String getToken(HttpSession session) {
 		Object val = session.getAttribute("captchaToken");

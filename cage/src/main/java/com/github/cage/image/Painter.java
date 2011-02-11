@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.cage;
+package com.github.cage.image;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -57,12 +57,12 @@ public class Painter {
 	}
 
 	/**
-	 * Default image width. It is the same as used by Google captcha.
+	 * Default image width.
 	 */
 	public static final int DEFAULT_WIDTH = 200;
 
 	/**
-	 * Default image height. It is the same as used by Google captcha.
+	 * Default image height.
 	 */
 	public static final int DEFAULT_HEIGHT = 70;
 
@@ -78,8 +78,7 @@ public class Painter {
 
 	/**
 	 * Default constructor calls
-	 * {@link Painter#Painter(int, int, Color, Quality, boolean, boolean, boolean, boolean, Random)
-	 * )}
+	 * {@link Painter#Painter(int, int, Color, Quality, boolean, boolean, boolean, boolean, Random)}
 	 */
 	public Painter() {
 		this(DEFAULT_WIDTH, DEFAULT_HEIGHT, null, null, true, true, false,
@@ -265,8 +264,9 @@ public class Painter {
 	}
 
 	/**
-	 * Does some of the text transformation (like rotation, scaling) and draws
-	 * the result.
+	 * Does some of the text transformation (calls
+	 * {@link #transform(Graphics2D, String, GlyphVector)}), scales, transforms
+	 * and draws the result (also the outline if needed).
 	 * 
 	 * @param g
 	 *            to be drawn upon
@@ -284,9 +284,10 @@ public class Painter {
 		float bh = (float) bounds.getHeight();
 
 		// transform + scale text to better fit the image
-		float wr = width / bw * (rnd.nextFloat() / 2.5f + 0.5f);
+		float wr = width / bw
+				* (rnd.nextFloat() / 20 + (outlineEnabled ? 0.89f : 0.92f));
 		float hr = height / bh
-				* (rnd.nextFloat() / 4 + (outlineEnabled ? 0.45f : 0.55f));
+				* (rnd.nextFloat() / 20 + (outlineEnabled ? 0.68f : 0.75f));
 		g.translate((width - bw * wr) / 2, (height - bh * hr) / 2);
 		g.scale(wr, hr);
 
@@ -301,7 +302,7 @@ public class Painter {
 	}
 
 	/**
-	 * Does some of the text transformation.
+	 * Does some of the text transformation (like rotation and symbol crowding).
 	 * 
 	 * @param g
 	 *            to be drawn upon
@@ -318,7 +319,7 @@ public class Painter {
 
 		double rotateCur = (rnd.nextDouble() - 0.5) * Math.PI / 8;
 		double rotateStep = Math.signum(rotateCur)
-				* (rnd.nextDouble() * Math.PI / 2 / glyphNum);
+				* (rnd.nextDouble() * 3 * Math.PI / 8 / glyphNum);
 
 		for (int fi = 0; fi < glyphNum; fi++) {
 			if (rotateEnabled) {
@@ -336,12 +337,14 @@ public class Painter {
 				newPos = new Point2D.Double(pos.getX() - bounds.getX(),
 						pos.getY());
 			else
-				newPos = new Point2D.Double(preBounds.getMaxX()
-						+ pos.getX()
-						- bounds.getX()
-						- Math.min(preBounds.getWidth(), bounds.getWidth())
-						* (rnd.nextDouble() * 0.15 + (rotateEnabled ? 0.20
-								: 0.15)), pos.getY());
+				newPos = new Point2D.Double(
+						preBounds.getMaxX()
+								+ pos.getX()
+								- bounds.getX()
+								- Math.min(preBounds.getWidth(),
+										bounds.getWidth())
+								* (rnd.nextDouble() / 20 + (rotateEnabled ? 0.27
+										: 0.20)), pos.getY());
 			v.setGlyphPosition(fi, newPos);
 			prePos = newPos;
 			preBounds = v.getGlyphVisualBounds(fi).getBounds2D();
@@ -362,7 +365,7 @@ public class Painter {
 					rnd.nextDouble() * 2 * Math.PI, (1 + rnd.nextDouble() * 2)
 							* Math.PI, img.getHeight() / 10.0);
 			Rippler.AxisConfig horizontal = new Rippler.AxisConfig(
-					rnd.nextDouble() * 2 * Math.PI, (1 + rnd.nextDouble() * 3)
+					rnd.nextDouble() * 2 * Math.PI, (2 + rnd.nextDouble() * 2)
 							* Math.PI, img.getWidth() / 100.0);
 			Rippler op = new Rippler(vertical, horizontal);
 

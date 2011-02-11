@@ -27,10 +27,11 @@ import org.apache.wicket.validation.IValidatable;
 import org.apache.wicket.validation.validator.StringValidator;
 
 import com.github.cage.Cage;
+import com.github.cage.GCage;
 
 public class HomePage extends WebPage {
 	private static final long serialVersionUID = 3303458191832318970L;
-	private static final Cage cage = new Cage();
+	private static final Cage cage = new GCage();
 
 	private String token = cage.getTokenGenerator().next();
 	private String captcha;

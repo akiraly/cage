@@ -31,6 +31,10 @@ import javax.imageio.ImageWriteParam;
 import javax.imageio.ImageWriter;
 import javax.imageio.stream.ImageOutputStream;
 
+import com.github.cage.image.Painter;
+import com.github.cage.image.RgbColorGenerator;
+import com.github.cage.token.RandomTokenGenerator;
+
 /**
  * Convenient entry class to control captcha generation. This class is thread
  * safe. Example usage:
@@ -39,12 +43,18 @@ import javax.imageio.stream.ImageOutputStream;
  * 
  * <pre>
  * <code>
- * Cage cage = Cage.likeG(); // lets make some Google like captchas
+ * Cage cage = new {@link GCage}(); // lets make some "G" template captchas
+ * // use new {@link YCage}() for "Y" template or configure it yourself with
+ * // one of the Cage {@link #Cage(Painter, IGenerator, IGenerator, String,
+ * Float, IGenerator, Random) constructors}.
  * 
  * // ...
  * 
- * cage.draw(someText1, someOutputstream1);
- * cage.draw(someText2, someOutputstream2);
+ * String token1 = cage.{@link #getTokenGenerator() getTokenGenerator()}.next();
+ * String token2 = cage.{@link #getTokenGenerator() getTokenGenerator()}.next();
+ * 
+ * cage.{@link #draw(String, OutputStream) draw}(token1, someOutputstream1);
+ * cage.{@link #draw(String, OutputStream) draw}(token2, someOutputstream2);
  * 
  * </code>
  * </pre>
@@ -74,8 +84,7 @@ public class Cage {
 
 	/**
 	 * Default constructor. Calls
-	 * {@link Cage#Cage(Painter, IGenerator, IGenerator, String, Float, IGenerator, Random)
-	 * )}
+	 * {@link Cage#Cage(Painter, IGenerator, IGenerator, String, Float, IGenerator, Random)}
 	 */
 	public Cage() {
 		this(null, null, null, null, DEFAULT_COMPRESS_RATIO, null, null);
@@ -119,18 +128,18 @@ public class Cage {
 				// new Font(Font.SANS_SERIF, Font.ITALIC, defFontHeight),//
 				new Font(Font.SERIF, Font.PLAIN, defFontHeight), //
 				// new Font(Font.SERIF, Font.ITALIC, defFontHeight), //
-				new Font(Font.MONOSPACED, Font.PLAIN, defFontHeight)); //
+				new Font(Font.MONOSPACED, Font.BOLD, defFontHeight)); //
 		// new Font(Font.MONOSPACED, Font.ITALIC, defFontHeight));
 		this.foregrounds = foregrounds != null ? foregrounds
 				: new RgbColorGenerator(rnd);
 		this.format = format != null ? format : DEFAULT_FORMAT;
 		this.compressRatio = compressRatio;
 		this.tokenGenerator = tokenGenerator != null ? tokenGenerator
-				: new RandomWordGenerator(rnd);
+				: new RandomTokenGenerator(rnd);
 	}
 
 	/**
-	 * Generate an image and serialize it to the output. This method will call
+	 * Generate an image and serialize it to the output. This method can call
 	 * {@link OutputStream#close()} on the supplied output stream.
 	 * 
 	 * @param text
@@ -183,7 +192,7 @@ public class Cage {
 	}
 
 	/**
-	 * Serializes an image to an {@link OutputStream}. This method will call
+	 * Serializes an image to an {@link OutputStream}. This method can call
 	 * {@link OutputStream#close()} on the supplied output stream.
 	 * 
 	 * @param img
@@ -220,30 +229,6 @@ public class Cage {
 		} finally {
 			iw.dispose();
 		}
-	}
-
-	/**
-	 * Creates and configures an instance that can generate captcha images
-	 * similar to Googles.
-	 * 
-	 * @return created and configured captcha generator
-	 */
-	public static Cage likeG() {
-		return new Cage();
-	}
-
-	/**
-	 * Creates and configures an instance that can generate captcha images
-	 * similar to Yahoos.
-	 * 
-	 * @return created and configured captcha generator
-	 */
-	public static Cage likeY() {
-		Random rnd = new Random();
-		return new Cage(new Painter(290, 80, null, null, true, true, true,
-				false, rnd), null, new ConstantColorGenerator(Color.BLACK),
-				null, Cage.DEFAULT_COMPRESS_RATIO, new RandomWordGenerator(rnd,
-						6, 2, RandomWordGenerator.Y_LETTER_SET), rnd);
 	}
 
 	/**

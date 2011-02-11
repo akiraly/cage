@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.cage;
+package com.github.cage.image;
 
 import java.awt.image.BufferedImage;
 
@@ -106,7 +106,7 @@ public class Rippler {
 	 *            config to calculate waving deltas from x axis (so to modify y
 	 *            values), not null
 	 * @param horizontal
-	 *            config to calculate waving deltas from x axis (so to modify x
+	 *            config to calculate waving deltas from y axis (so to modify x
 	 *            values), not null
 	 */
 	public Rippler(AxisConfig vertical, AxisConfig horizontal) {
