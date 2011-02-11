@@ -1,0 +1,37 @@
+Predefined templates
+
+	Cage comes with a few preconfigured captchas for convenient usage.
+
+* "G" Template
+
+	This template is modeled after Google's captcha and is represented with the
+	{{{./apidocs/com/github/cage/GCage.html}com.github.cage.GCage}} class.
+
+[s/i/cg216.jpg] cazefagava
+
+[s/i/cg227.jpg] xukelayuhe
+
+	Features of this captcha:
+	
+	* English lower cased alphabet in tokens
+	
+	* white background, random foreground
+	
+	* effects in use: symbol crowding, rotation, ripple (waving), blurring
+
+* "Y" Template
+
+	This template is modeled after Yahoo's captcha and is represented with the
+	{{{./apidocs/com/github/cage/YCage.html}com.github.cage.YCage}} class.
+
+[s/i/cy213.jpg] MxAtfqK
+
+[s/i/cy230.jpg] 4vM4B8tL
+
+	Features of this captcha:
+	
+	* English lower and upper cased alphabet plus arab numbers in tokens
+	
+	* white background, black foreground
+	
+	* effects in use: symbol crowding, outline shadow, ripple (waving), blurring

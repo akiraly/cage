@@ -5,12 +5,25 @@
 	name="Cage - CAptcha GEnerator">
 	<bannerLeft>
 		<name>Cage - CAptcha GEnerator java library</name>
-		<href>${project.url}</href>
+		<href>${project.url}/index.html</href>
 	</bannerLeft>
 	<body>
 		<links>
-			<item name="${project.name}" href="${project.url}" />
+			<item name="About" href="index.html" />
+			<item name="QuickStart" href="quickstart.html" />
+			<item name="Templates" href="templates.html" />
+			<item name="Examples" href="examples.html" />
+			<item name="Download" href="download.html" />
+			<item name="Javadoc" href="apidocs/index.html" />
 		</links>
+		<menu name="Overview">
+			<item name="About" href="index.html" />
+			<item name="QuickStart" href="quickstart.html" />
+			<item name="Templates" href="templates.html" />
+			<item name="Examples" href="examples.html" />
+			<item name="Download" href="download.html" />
+			<item name="Javadoc" href="apidocs/index.html" />
+		</menu>
 		<!--menu ref="parent" / -->
 		<menu ref="modules" />
 		<menu ref="reports" />

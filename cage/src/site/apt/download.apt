@@ -1,0 +1,22 @@
+Download
+
+* Release
+
+	Cage releases are published to maven central. If you use maven just add this
+	to your pom:
+
++---
+<dependency>
+	<groupId>com.github.cage</groupId>
+	<artifactId>cage</artifactId>
+	<version>1.0</version>
+</dependency>
++---
+
+	If you are not using maven you can manually download the binary, javadoc and
+	source release jar files directly from the repository (TODO).
+
+* Source
+
+	The source code of Cage is available trough git from
+	{{{https://github.com/akiraly/cage}GitHub}}.

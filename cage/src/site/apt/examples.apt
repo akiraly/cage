@@ -1,0 +1,10 @@
+Examples
+
+	The following examples are available:
+
+	* Simple: a short command line program demonstrating how you can use a few
+	hundred captcha images.
+
+	* Servlet: a small web application integrating Cage as captcha service.
+
+	* Wicket: an integration example for wicket users.

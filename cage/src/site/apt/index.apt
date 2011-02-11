@@ -1,1 +1,30 @@
-Cage - CAptcha GEnerator java library
+About Cage
+
+	Cage is a CAPTCHA image generator java library. It is fast, small and
+simple. Its goal is to generate images that are easy to read for a human but
+impossible or at least very hard for a computer.
+
+[s/i/cg21.jpg] zugelazum
+
+[s/i/cy217.jpg] 5LNaeZk
+
+* Features
+
+	* it is open source, {{{./license.html}Apache v2}} licensed so it can be
+	used in enterprise/proprietary projects too
+	
+	* it supports maven (available from the central maven repository)
+	
+	* it is fast (on the test pc 3-5 msec / image)
+	
+	* it is small (only a small jar, no external dependency only Java 1.5 or
+	newer is needed)
+	
+	* supports a wide variety of effects (like symbol crowding, rotating,
+	ripple - waving, outline shadow, blurring)
+	
+	* has two predefined templates that mimics those captchas used by large
+	email providers. See {{{./templates.html}Templates}} for more info.
+	
+	* it is simple to use and integrate. See {{{./quickstart.html}QuickStart}}
+	for a fast start.

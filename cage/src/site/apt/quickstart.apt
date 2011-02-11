@@ -1,0 +1,35 @@
+QuickStart
+
+	If you use maven add this to your pom:
+
++---
+<dependency>
+	<groupId>com.github.cage</groupId>
+	<artifactId>cage</artifactId>
+	<version>1.0</version>
+</dependency>
++---
+
+	If you are not using maven, you have to download the jar from here (TODO) and add
+	it to your application's classpath.
+
+	Now you can generate captcha images. In this example we will generate a
+	captcha file with "G" template.
+
++---
+public class QuickStart {
+	public static void main(String[] args) throws IOException {
+		Cage cage = new GCage();
+
+		OutputStream os = new FileOutputStream("captcha.jpg", false);
+		try {
+			cage.draw(cage.getTokenGenerator().next(), os);
+		} finally {
+			os.close();
+		}
+	}
+}
++---
+
+	See the {{{./apidocs/index.html}javadoc}} or the
+	{{{./apidocs/index.html}examples}} to learn more.
