@@ -83,8 +83,9 @@ public class YCage extends com.github.cage.Cage {
 	 *            object used for random value generation. Not null.
 	 */
 	protected YCage(Random rnd) {
-		super(new Painter(WIDTH, HEIGHT, null, null, true, true, true, false,
-				rnd), null, new ConstantColorGenerator(Color.BLACK), null,
+		super(new Painter(WIDTH, HEIGHT, null, null, new Painter.EffectConfig(
+				true, true, true, false), rnd), null,
+				new ConstantColorGenerator(Color.BLACK), null,
 				Cage.DEFAULT_COMPRESS_RATIO, new RandomTokenGenerator(rnd,
 						new RandomCharacterGeneratorFactory(
 								TOKEN_DEFAULT_CHARACTER_SET, null, rnd),

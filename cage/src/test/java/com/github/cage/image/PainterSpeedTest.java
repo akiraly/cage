@@ -44,8 +44,7 @@ public class PainterSpeedTest {
 	@Test
 	public void testDefaultQuality() {
 		Painter painter = new Painter(Painter.DEFAULT_WIDTH,
-				Painter.DEFAULT_HEIGHT, null, Quality.DEFAULT, true, true,
-				false, true, null);
+				Painter.DEFAULT_HEIGHT, null, Quality.DEFAULT, null, null);
 
 		warmAndTest(painter, "default quality", 5.5);
 	}
@@ -56,8 +55,7 @@ public class PainterSpeedTest {
 	@Test
 	public void testMinQuality() {
 		Painter painter = new Painter(Painter.DEFAULT_WIDTH,
-				Painter.DEFAULT_HEIGHT, null, Quality.MIN, true, true, false,
-				true, null);
+				Painter.DEFAULT_HEIGHT, null, Quality.MIN, null, null);
 
 		warmAndTest(painter, "min quality", 5.5);
 	}
@@ -78,8 +76,8 @@ public class PainterSpeedTest {
 	@Test
 	public void testNoRipple() {
 		Painter painter = new Painter(Painter.DEFAULT_WIDTH,
-				Painter.DEFAULT_HEIGHT, null, null, false, true, true, true,
-				null);
+				Painter.DEFAULT_HEIGHT, null, null, new Painter.EffectConfig(
+						false, true, true, true), null);
 
 		warmAndTest(painter, "no ripple", 3);
 	}
@@ -90,8 +88,8 @@ public class PainterSpeedTest {
 	@Test
 	public void testNoBlur() {
 		Painter painter = new Painter(Painter.DEFAULT_WIDTH,
-				Painter.DEFAULT_HEIGHT, null, null, true, false, true, true,
-				null);
+				Painter.DEFAULT_HEIGHT, null, null, new Painter.EffectConfig(
+						true, false, true, true), null);
 
 		warmAndTest(painter, "no blur", 4.5);
 	}
@@ -102,8 +100,8 @@ public class PainterSpeedTest {
 	@Test
 	public void testNoOutline() {
 		Painter painter = new Painter(Painter.DEFAULT_WIDTH,
-				Painter.DEFAULT_HEIGHT, null, null, true, true, false, true,
-				null);
+				Painter.DEFAULT_HEIGHT, null, null, new Painter.EffectConfig(
+						true, true, false, true), null);
 
 		warmAndTest(painter, "no outline", 4);
 	}
@@ -114,8 +112,8 @@ public class PainterSpeedTest {
 	@Test
 	public void testNoRotate() {
 		Painter painter = new Painter(Painter.DEFAULT_WIDTH,
-				Painter.DEFAULT_HEIGHT, null, null, true, true, true, false,
-				null);
+				Painter.DEFAULT_HEIGHT, null, null, new Painter.EffectConfig(
+						true, true, true, false), null);
 
 		warmAndTest(painter, "no rotate", 4.5);
 	}
@@ -126,8 +124,8 @@ public class PainterSpeedTest {
 	@Test
 	public void testYesRipple() {
 		Painter painter = new Painter(Painter.DEFAULT_WIDTH,
-				Painter.DEFAULT_HEIGHT, null, null, true, false, false, false,
-				null);
+				Painter.DEFAULT_HEIGHT, null, null, new Painter.EffectConfig(
+						true, false, false, false), null);
 
 		warmAndTest(painter, "yes ripple", 3.5);
 	}
@@ -138,8 +136,8 @@ public class PainterSpeedTest {
 	@Test
 	public void testYesBlur() {
 		Painter painter = new Painter(Painter.DEFAULT_WIDTH,
-				Painter.DEFAULT_HEIGHT, null, null, false, true, false, false,
-				null);
+				Painter.DEFAULT_HEIGHT, null, null, new Painter.EffectConfig(
+						false, true, false, false), null);
 
 		warmAndTest(painter, "yes blur", 1.5);
 	}
@@ -150,8 +148,8 @@ public class PainterSpeedTest {
 	@Test
 	public void testYesOutline() {
 		Painter painter = new Painter(Painter.DEFAULT_WIDTH,
-				Painter.DEFAULT_HEIGHT, null, null, false, false, true, false,
-				null);
+				Painter.DEFAULT_HEIGHT, null, null, new Painter.EffectConfig(
+						false, false, true, false), null);
 
 		warmAndTest(painter, "yes outline", 2);
 	}
@@ -162,8 +160,8 @@ public class PainterSpeedTest {
 	@Test
 	public void testYesRotate() {
 		Painter painter = new Painter(Painter.DEFAULT_WIDTH,
-				Painter.DEFAULT_HEIGHT, null, null, false, false, false, true,
-				null);
+				Painter.DEFAULT_HEIGHT, null, null, new Painter.EffectConfig(
+						false, false, false, true), null);
 
 		warmAndTest(painter, "yes rotate", 2);
 	}
@@ -174,8 +172,8 @@ public class PainterSpeedTest {
 	@Test
 	public void testNoRippleNoBlurNoOutlineNoRotate() {
 		Painter painter = new Painter(Painter.DEFAULT_WIDTH,
-				Painter.DEFAULT_HEIGHT, null, null, false, false, false, false,
-				null);
+				Painter.DEFAULT_HEIGHT, null, null, new Painter.EffectConfig(
+						false, false, false, false), null);
 
 		warmAndTest(painter, "no ripple, no blur, no outline, no rotate", 1.25);
 	}
@@ -186,8 +184,8 @@ public class PainterSpeedTest {
 	@Test
 	public void testYesRippleYesBlurYesOutlineYesRotate() {
 		Painter painter = new Painter(Painter.DEFAULT_WIDTH,
-				Painter.DEFAULT_HEIGHT, null, null, true, true, true, true,
-				null);
+				Painter.DEFAULT_HEIGHT, null, null, new Painter.EffectConfig(
+						true, true, true, true), null);
 
 		warmAndTest(painter, "yes ripple, yes blur, yes outline, yes rotate", 5);
 	}
@@ -198,8 +196,8 @@ public class PainterSpeedTest {
 	@Test
 	public void testNoRippleNoBlur() {
 		Painter painter = new Painter(Painter.DEFAULT_WIDTH,
-				Painter.DEFAULT_HEIGHT, null, null, false, false, true, true,
-				null);
+				Painter.DEFAULT_HEIGHT, null, null, new Painter.EffectConfig(
+						false, false, true, true), null);
 
 		warmAndTest(painter, "no ripple, no blur", 2.5);
 	}

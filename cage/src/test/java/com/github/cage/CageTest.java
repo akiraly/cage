@@ -52,10 +52,10 @@ public class CageTest {
 	@Test
 	public void testMax() throws IOException {
 		Random rnd = new Random();
-		testSize(new Cage(
-				new Painter(Painter.DEFAULT_WIDTH, Painter.DEFAULT_HEIGHT,
-						null, null, true, true, true, true, rnd), null, null,
-				null, Cage.DEFAULT_COMPRESS_RATIO, null, rnd));
+		testSize(new Cage(new Painter(Painter.DEFAULT_WIDTH,
+				Painter.DEFAULT_HEIGHT, null, null, new Painter.EffectConfig(
+						true, true, true, true), rnd), null, null, null,
+				Cage.DEFAULT_COMPRESS_RATIO, null, rnd));
 	}
 
 	/**

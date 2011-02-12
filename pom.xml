@@ -35,6 +35,16 @@ Cage is a CAPTCHA image generator java library. It is fast, small and simple.
 		<url>https://github.com/akiraly/cage/issues</url>
 	</issueManagement>
 
+	<mailingLists>
+		<mailingList>
+			<name>Cage Mailing List</name>
+			<post>cage-lib@googlegroups.com</post>
+			<subscribe>http://groups.google.com/group/cage-lib</subscribe>
+			<unsubscribe>http://groups.google.com/group/cage-lib</unsubscribe>
+			<archive>http://groups.google.com/group/cage-lib</archive>
+		</mailingList>
+	</mailingLists>
+
 	<developers>
 		<developer>
 			<id>akiraly</id>
@@ -184,6 +194,7 @@ Cage is a CAPTCHA image generator java library. It is fast, small and simple.
 								<reports>
 									<report>issue-tracking</report>
 									<report>license</report>
+									<report>mailing-list</report>
 									<report>project-team</report>
 									<report>scm</report>
 									<report>summary</report>

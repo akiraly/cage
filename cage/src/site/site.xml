@@ -4,7 +4,7 @@
 	xsi:schemaLocation="http://maven.apache.org/DECORATION/1.0.0 http://maven.apache.org/xsd/decoration-1.0.0.xsd"
 	name="Cage - Captcha Generator">
 	<bannerLeft>
-		<name>Cage - CAptcha GEnerator java library</name>
+		<name>Cage - CAptcha GEnerator Java Library</name>
 		<href>${project.url}/index.html</href>
 	</bannerLeft>
 	<body>
@@ -14,6 +14,7 @@
 			<item name="Templates" href="templates.html" />
 			<item name="Examples" href="examples.html" />
 			<item name="Download" href="download.html" />
+			<item name="Mailing List" href="mailinglist.html" />
 			<item name="Javadoc" href="apidocs/index.html" />
 		</links>
 		<menu name="Overview">
@@ -26,6 +27,7 @@
 				<item name="Wicket" href="e03_wicket.html" />
 			</item>
 			<item name="Download" href="download.html" />
+			<item name="Mailing List" href="mailinglist.html" />
 			<item name="Javadoc" href="apidocs/index.html" />
 		</menu>
 		<!--menu ref="parent" / -->

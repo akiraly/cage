@@ -14,7 +14,8 @@ Download
 +---
 
 	If you are not using maven you can manually download the binary, javadoc and
-	source release jar files directly from the repository (TODO).
+	source release jar files directly from the
+	{{{http://repo1.maven.org/maven2/com/github/cage/cage}repository}}.
 
 * Source
 

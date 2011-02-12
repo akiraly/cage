@@ -10,7 +10,8 @@ QuickStart
 </dependency>
 +---
 
-	If you are not using maven, you have to download the jar from here (TODO) and add
+	If you are not using maven, you have to download the jar manually from the
+	{{{http://repo1.maven.org/maven2/com/github/cage/cage}repository}} and add
 	it to your application's classpath.
 
 	Now you can generate captcha images. In this example we will generate a

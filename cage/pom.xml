@@ -23,7 +23,7 @@ or at least very hard for a computer.
 	<scm>
 		<url>https://github.com/akiraly/cage</url>
 		<connection>scm:git:git://github.com/akiraly/cage.git</connection>
-		<developerConnection>scm:git:git@github.com:akiraly/cage.git</developerConnection>
+		<developerConnection>scm:git:ssh://git@github.com:akiraly/cage.git</developerConnection>
 	</scm>
 
 	<dependencies>

@@ -57,6 +57,78 @@ public class Painter {
 	}
 
 	/**
+	 * Class to represent used effect configuration.
+	 */
+	public static class EffectConfig {
+		private final boolean rippleEnabled;
+		private final boolean blurEnabled;
+		private final boolean outlineEnabled;
+		private final boolean rotateEnabled;
+
+		/**
+		 * Constructor.
+		 */
+		public EffectConfig() {
+			this(true, true, false, true);
+		}
+
+		/**
+		 * Constructor.
+		 * 
+		 * @param rippleEnabled
+		 *            waving effect should be used, default true, disabling this
+		 *            helps performance
+		 * @param blurEnabled
+		 *            should the image be blurred, default true, disabling this
+		 *            helps performance
+		 * @param outlineEnabled
+		 *            should a shifted, font colored outline be drawn behind the
+		 *            characters, default false, disabling this helps
+		 *            performance slightly
+		 * @param rotateEnabled
+		 *            should the letters be rotated independently, default true,
+		 *            disabling this helps performance slightly
+		 */
+		public EffectConfig(boolean rippleEnabled, boolean blurEnabled,
+				boolean outlineEnabled, boolean rotateEnabled) {
+			super();
+			this.rippleEnabled = rippleEnabled;
+			this.blurEnabled = blurEnabled;
+			this.outlineEnabled = outlineEnabled;
+			this.rotateEnabled = rotateEnabled;
+		}
+
+		/**
+		 * @return true if the image will be rippled (waved)
+		 */
+		public boolean isRippleEnabled() {
+			return rippleEnabled;
+		}
+
+		/**
+		 * @return true if the image will be blurred
+		 */
+		public boolean isBlurEnabled() {
+			return blurEnabled;
+		}
+
+		/**
+		 * @return true if outline shadow for text will be drawn on the image
+		 */
+		public boolean isOutlineEnabled() {
+			return outlineEnabled;
+		}
+
+		/**
+		 * @return true if the text letters will be rotated before drawn on the
+		 *         image
+		 */
+		public boolean isRotateEnabled() {
+			return rotateEnabled;
+		}
+	}
+
+	/**
 	 * Default image width.
 	 */
 	public static final int DEFAULT_WIDTH = 200;
@@ -70,18 +142,14 @@ public class Painter {
 	private final int height;
 	private final Color background;
 	private final Quality quality;
-	private final boolean rippleEnabled;
-	private final boolean blurEnabled;
-	private final boolean outlineEnabled;
-	private final boolean rotateEnabled;
+	private final EffectConfig effectConfig;
 	private final Random rnd;
 
 	/**
 	 * Constructor.
 	 */
 	public Painter() {
-		this(DEFAULT_WIDTH, DEFAULT_HEIGHT, null, null, true, true, false,
-				true, null);
+		this(DEFAULT_WIDTH, DEFAULT_HEIGHT, null, null, null, null);
 	}
 
 	/**
@@ -91,8 +159,7 @@ public class Painter {
 	 *            random generator to be used, can be null
 	 */
 	public Painter(Random rnd) {
-		this(DEFAULT_WIDTH, DEFAULT_HEIGHT, null, null, true, true, false,
-				true, rnd);
+		this(DEFAULT_WIDTH, DEFAULT_HEIGHT, null, null, null, rnd);
 	}
 
 	/**
@@ -108,34 +175,20 @@ public class Painter {
 	 *            captcha image quality, default {@link Quality#MAX}, should use
 	 *            max it does not have measurable speed penalty on modern jvm-s
 	 *            (1.6u23), can be null
-	 * @param ripple
-	 *            waving effect should be used, default true, disabling this
-	 *            helps performance
-	 * @param blur
-	 *            should the image be blurred, default true, disabling this
-	 *            helps performance
-	 * @param outline
-	 *            should a shifted, font colored outline be drawn behind the
-	 *            characters, default false, disabling this helps performance
-	 *            slightly
-	 * @param rotate
-	 *            should the letters be rotated independently, default true,
-	 *            disabling this helps performance slightly
+	 * @param effectConfig
+	 *            used to define what effects should be used, can be null
 	 * @param rnd
 	 *            random generator to be used, can be null
 	 */
 	public Painter(int width, int height, Color bGround, Quality quality,
-			boolean ripple, boolean blur, boolean outline, boolean rotate,
-			Random rnd) {
+			EffectConfig effectConfig, Random rnd) {
 		super();
 		this.width = width;
 		this.height = height;
 		this.background = bGround != null ? bGround : Color.WHITE;
 		this.quality = quality != null ? quality : Quality.MAX;
-		this.rippleEnabled = ripple;
-		this.blurEnabled = blur;
-		this.outlineEnabled = outline;
-		this.rotateEnabled = rotate;
+		this.effectConfig = effectConfig != null ? effectConfig
+				: new EffectConfig();
 		this.rnd = rnd != null ? rnd : new Random();
 	}
 
@@ -283,6 +336,8 @@ public class Painter {
 		float bw = (float) bounds.getWidth();
 		float bh = (float) bounds.getHeight();
 
+		boolean outlineEnabled = effectConfig.isOutlineEnabled();
+
 		// transform + scale text to better fit the image
 		float wr = width / bw
 				* (rnd.nextFloat() / 20 + (outlineEnabled ? 0.89f : 0.92f));
@@ -321,6 +376,7 @@ public class Painter {
 		double rotateCur = (rnd.nextDouble() - 0.5) * Math.PI / 8;
 		double rotateStep = Math.signum(rotateCur)
 				* (rnd.nextDouble() * 3 * Math.PI / 8 / glyphNum);
+		boolean rotateEnabled = effectConfig.isRotateEnabled();
 
 		for (int fi = 0; fi < glyphNum; fi++) {
 			if (rotateEnabled) {
@@ -363,7 +419,7 @@ public class Painter {
 	 * @return the finished image, maybe the same as the input
 	 */
 	protected BufferedImage postProcess(BufferedImage img) {
-		if (rippleEnabled) {
+		if (effectConfig.isRippleEnabled()) {
 			Rippler.AxisConfig vertical = new Rippler.AxisConfig(
 					rnd.nextDouble() * 2 * Math.PI, (1 + rnd.nextDouble() * 2)
 							* Math.PI, img.getHeight() / 10.0);
@@ -374,7 +430,7 @@ public class Painter {
 
 			img = op.filter(img, createImage());
 		}
-		if (blurEnabled) {
+		if (effectConfig.isBlurEnabled()) {
 			float[] blurArray = new float[9];
 			fillBlurArray(blurArray);
 			ConvolveOp op = new ConvolveOp(new Kernel(3, 3, blurArray),
@@ -431,31 +487,9 @@ public class Painter {
 	}
 
 	/**
-	 * @return true if the image will be rippled (waved)
+	 * @return configuration for effects, not null
 	 */
-	public boolean isRippleEnabled() {
-		return rippleEnabled;
-	}
-
-	/**
-	 * @return true if the image will be blurred
-	 */
-	public boolean isBlurEnabled() {
-		return blurEnabled;
-	}
-
-	/**
-	 * @return true if outline shadow for text will be drawn on the image
-	 */
-	public boolean isOutlineEnabled() {
-		return outlineEnabled;
-	}
-
-	/**
-	 * @return true if the text letters will be rotated before drawn on the
-	 *         image
-	 */
-	public boolean isRotateEnabled() {
-		return rotateEnabled;
+	public EffectConfig getEffectConfig() {
+		return effectConfig;
 	}
 }
