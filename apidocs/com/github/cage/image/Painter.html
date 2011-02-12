@@ -55,7 +55,7 @@ function windowTitle()
 <TR>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
 &nbsp;<A HREF="../../../../com/github/cage/image/ConstantColorGenerator.html" title="class in com.github.cage.image"><B>PREV CLASS</B></A>&nbsp;
-&nbsp;<A HREF="../../../../com/github/cage/image/Painter.Quality.html" title="enum in com.github.cage.image"><B>NEXT CLASS</B></A></FONT></TD>
+&nbsp;<A HREF="../../../../com/github/cage/image/Painter.EffectConfig.html" title="class in com.github.cage.image"><B>NEXT CLASS</B></A></FONT></TD>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
   <A HREF="../../../../index.html?com/github/cage/image/Painter.html" target="_top"><B>FRAMES</B></A>  &nbsp;
 &nbsp;<A HREF="Painter.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
@@ -122,6 +122,14 @@ This class does most of the captcha drawing. This class is thread safe.
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>static&nbsp;class</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/github/cage/image/Painter.EffectConfig.html" title="class in com.github.cage.image">Painter.EffectConfig</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Class to represent used effect configuration.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;class</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/github/cage/image/Painter.Quality.html" title="enum in com.github.cage.image">Painter.Quality</A></B></CODE>
 
 <BR>
@@ -166,28 +174,24 @@ This class does most of the captcha drawing. This class is thread safe.
 <TD><CODE><B><A HREF="../../../../com/github/cage/image/Painter.html#Painter()">Painter</A></B>()</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default constructor calls
- <A HREF="../../../../com/github/cage/image/Painter.html#Painter(int, int, java.awt.Color, com.github.cage.image.Painter.Quality, boolean, boolean, boolean, boolean, java.util.Random)"><CODE>Painter(int, int, Color, Quality, boolean, boolean, boolean, boolean, Random)</CODE></A></TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Constructor.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE><B><A HREF="../../../../com/github/cage/image/Painter.html#Painter(int, int, java.awt.Color, com.github.cage.image.Painter.Quality, boolean, boolean, boolean, boolean, java.util.Random)">Painter</A></B>(int&nbsp;width,
+<TD><CODE><B><A HREF="../../../../com/github/cage/image/Painter.html#Painter(int, int, java.awt.Color, com.github.cage.image.Painter.Quality, com.github.cage.image.Painter.EffectConfig, java.util.Random)">Painter</A></B>(int&nbsp;width,
         int&nbsp;height,
         <A HREF="http://download.oracle.com/javase/1.5.0/docs/api/java/awt/Color.html?is-external=true" title="class or interface in java.awt">Color</A>&nbsp;bGround,
         <A HREF="../../../../com/github/cage/image/Painter.Quality.html" title="enum in com.github.cage.image">Painter.Quality</A>&nbsp;quality,
-        boolean&nbsp;ripple,
-        boolean&nbsp;blur,
-        boolean&nbsp;outline,
-        boolean&nbsp;rotate,
+        <A HREF="../../../../com/github/cage/image/Painter.EffectConfig.html" title="class in com.github.cage.image">Painter.EffectConfig</A>&nbsp;effectConfig,
         <A HREF="http://download.oracle.com/javase/1.5.0/docs/api/java/util/Random.html?is-external=true" title="class or interface in java.util">Random</A>&nbsp;rnd)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Constructor</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Constructor.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD><CODE><B><A HREF="../../../../com/github/cage/image/Painter.html#Painter(java.util.Random)">Painter</A></B>(<A HREF="http://download.oracle.com/javase/1.5.0/docs/api/java/util/Random.html?is-external=true" title="class or interface in java.util">Random</A>&nbsp;rnd)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Constructor</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Constructor.</TD>
 </TR>
 </TABLE>
 &nbsp;
@@ -264,6 +268,14 @@ This class does most of the captcha drawing. This class is thread safe.
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="../../../../com/github/cage/image/Painter.EffectConfig.html" title="class in com.github.cage.image">Painter.EffectConfig</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/github/cage/image/Painter.html#getEffectConfig()">getEffectConfig</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;int</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/github/cage/image/Painter.html#getHeight()">getHeight</A></B>()</CODE>
 
@@ -282,38 +294,6 @@ This class does most of the captcha drawing. This class is thread safe.
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;int</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/github/cage/image/Painter.html#getWidth()">getWidth</A></B>()</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;boolean</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/github/cage/image/Painter.html#isBlurEnabled()">isBlurEnabled</A></B>()</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;boolean</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/github/cage/image/Painter.html#isOutlineEnabled()">isOutlineEnabled</A></B>()</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;boolean</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/github/cage/image/Painter.html#isRippleEnabled()">isRippleEnabled</A></B>()</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;boolean</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/github/cage/image/Painter.html#isRotateEnabled()">isRotateEnabled</A></B>()</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
@@ -397,8 +377,7 @@ Painter</H3>
 <PRE>
 public <B>Painter</B>()</PRE>
 <DL>
-<DD>Default constructor calls
- <A HREF="../../../../com/github/cage/image/Painter.html#Painter(int, int, java.awt.Color, com.github.cage.image.Painter.Quality, boolean, boolean, boolean, boolean, java.util.Random)"><CODE>Painter(int, int, Color, Quality, boolean, boolean, boolean, boolean, Random)</CODE></A>
+<DD>Constructor.
 <P>
 </DL>
 <HR>
@@ -408,37 +387,29 @@ Painter</H3>
 <PRE>
 public <B>Painter</B>(<A HREF="http://download.oracle.com/javase/1.5.0/docs/api/java/util/Random.html?is-external=true" title="class or interface in java.util">Random</A>&nbsp;rnd)</PRE>
 <DL>
-<DD>Constructor
+<DD>Constructor.
 <P>
 <DL>
 <DT><B>Parameters:</B><DD><CODE>rnd</CODE> - random generator to be used, can be null</DL>
 </DL>
 <HR>
 
-<A NAME="Painter(int, int, java.awt.Color, com.github.cage.image.Painter.Quality, boolean, boolean, boolean, boolean, java.util.Random)"><!-- --></A><H3>
+<A NAME="Painter(int, int, java.awt.Color, com.github.cage.image.Painter.Quality, com.github.cage.image.Painter.EffectConfig, java.util.Random)"><!-- --></A><H3>
 Painter</H3>
 <PRE>
 public <B>Painter</B>(int&nbsp;width,
                int&nbsp;height,
                <A HREF="http://download.oracle.com/javase/1.5.0/docs/api/java/awt/Color.html?is-external=true" title="class or interface in java.awt">Color</A>&nbsp;bGround,
                <A HREF="../../../../com/github/cage/image/Painter.Quality.html" title="enum in com.github.cage.image">Painter.Quality</A>&nbsp;quality,
-               boolean&nbsp;ripple,
-               boolean&nbsp;blur,
-               boolean&nbsp;outline,
-               boolean&nbsp;rotate,
+               <A HREF="../../../../com/github/cage/image/Painter.EffectConfig.html" title="class in com.github.cage.image">Painter.EffectConfig</A>&nbsp;effectConfig,
                <A HREF="http://download.oracle.com/javase/1.5.0/docs/api/java/util/Random.html?is-external=true" title="class or interface in java.util">Random</A>&nbsp;rnd)</PRE>
 <DL>
-<DD>Constructor
+<DD>Constructor.
 <P>
 <DL>
 <DT><B>Parameters:</B><DD><CODE>width</CODE> - captcha image width, default <A HREF="../../../../com/github/cage/image/Painter.html#DEFAULT_WIDTH"><CODE>DEFAULT_WIDTH</CODE></A><DD><CODE>height</CODE> - captcha image height, default <A HREF="../../../../com/github/cage/image/Painter.html#DEFAULT_HEIGHT"><CODE>DEFAULT_HEIGHT</CODE></A><DD><CODE>bGround</CODE> - background color of captcha image, default white, can be null<DD><CODE>quality</CODE> - captcha image quality, default <A HREF="../../../../com/github/cage/image/Painter.Quality.html#MAX"><CODE>Painter.Quality.MAX</CODE></A>, should use
             max it does not have measurable speed penalty on modern jvm-s
-            (1.6u23), can be null<DD><CODE>ripple</CODE> - waving effect should be used, default true, disabling this
-            helps performance<DD><CODE>blur</CODE> - should the image be blurred, default true, disabling this
-            helps performance<DD><CODE>outline</CODE> - should a shifted, font colored outline be drawn behind the
-            characters, default false, disabling this helps performance
-            slightly<DD><CODE>rotate</CODE> - should the letters be rotated independently, default true,
-            disabling this helps performance slightly<DD><CODE>rnd</CODE> - random generator to be used, can be null</DL>
+            (1.6u23), can be null<DD><CODE>effectConfig</CODE> - used to define what effects should be used, can be null<DD><CODE>rnd</CODE> - random generator to be used, can be null</DL>
 </DL>
 
 <!-- ============ METHOD DETAIL ========== -->
@@ -619,51 +590,14 @@ public <A HREF="../../../../com/github/cage/image/Painter.Quality.html" title="e
 </DL>
 <HR>
 
-<A NAME="isRippleEnabled()"><!-- --></A><H3>
-isRippleEnabled</H3>
+<A NAME="getEffectConfig()"><!-- --></A><H3>
+getEffectConfig</H3>
 <PRE>
-public boolean <B>isRippleEnabled</B>()</PRE>
+public <A HREF="../../../../com/github/cage/image/Painter.EffectConfig.html" title="class in com.github.cage.image">Painter.EffectConfig</A> <B>getEffectConfig</B>()</PRE>
 <DL>
 <DD><DL>
 
-<DT><B>Returns:</B><DD>true if the image will be rippled (waved)</DL>
-</DD>
-</DL>
-<HR>
-
-<A NAME="isBlurEnabled()"><!-- --></A><H3>
-isBlurEnabled</H3>
-<PRE>
-public boolean <B>isBlurEnabled</B>()</PRE>
-<DL>
-<DD><DL>
-
-<DT><B>Returns:</B><DD>true if the image will be blurred</DL>
-</DD>
-</DL>
-<HR>
-
-<A NAME="isOutlineEnabled()"><!-- --></A><H3>
-isOutlineEnabled</H3>
-<PRE>
-public boolean <B>isOutlineEnabled</B>()</PRE>
-<DL>
-<DD><DL>
-
-<DT><B>Returns:</B><DD>true if outline shadow for text will be drawn on the image</DL>
-</DD>
-</DL>
-<HR>
-
-<A NAME="isRotateEnabled()"><!-- --></A><H3>
-isRotateEnabled</H3>
-<PRE>
-public boolean <B>isRotateEnabled</B>()</PRE>
-<DL>
-<DD><DL>
-
-<DT><B>Returns:</B><DD>true if the text letters will be rotated before drawn on the
-         image</DL>
+<DT><B>Returns:</B><DD>configuration for effects, not null</DL>
 </DD>
 </DL>
 <!-- ========= END OF CLASS DATA ========= -->
@@ -698,7 +632,7 @@ public boolean <B>isRotateEnabled</B>()</PRE>
 <TR>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
 &nbsp;<A HREF="../../../../com/github/cage/image/ConstantColorGenerator.html" title="class in com.github.cage.image"><B>PREV CLASS</B></A>&nbsp;
-&nbsp;<A HREF="../../../../com/github/cage/image/Painter.Quality.html" title="enum in com.github.cage.image"><B>NEXT CLASS</B></A></FONT></TD>
+&nbsp;<A HREF="../../../../com/github/cage/image/Painter.EffectConfig.html" title="class in com.github.cage.image"><B>NEXT CLASS</B></A></FONT></TD>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
   <A HREF="../../../../index.html?com/github/cage/image/Painter.html" target="_top"><B>FRAMES</B></A>  &nbsp;
 &nbsp;<A HREF="Painter.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;

@@ -127,12 +127,45 @@ Creates and configures a <A HREF="../../../com/github/cage/Cage.html" title="cla
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>static&nbsp;char[]</CODE></FONT></TD>
+<CODE>protected static&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/github/cage/YCage.html#HEIGHT">HEIGHT</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Height of CAPTCHA image.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>protected static&nbsp;char[]</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../com/github/cage/YCage.html#TOKEN_DEFAULT_CHARACTER_SET">TOKEN_DEFAULT_CHARACTER_SET</A></B></CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Character set supplied to the <A HREF="../../../com/github/cage/token/RandomTokenGenerator.html" title="class in com.github.cage.token"><CODE>RandomTokenGenerator</CODE></A> used by this
  template.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>protected static&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/github/cage/YCage.html#TOKEN_LEN_DELTA">TOKEN_LEN_DELTA</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Maximum length of token is <A HREF="../../../com/github/cage/YCage.html#TOKEN_LEN_MIN">6</A> +
+ 2.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>protected static&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/github/cage/YCage.html#TOKEN_LEN_MIN">TOKEN_LEN_MIN</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Minimum length of token.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>protected static&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/github/cage/YCage.html#WIDTH">WIDTH</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Width of CAPTCHA image.</TD>
 </TR>
 </TABLE>
 &nbsp;<A NAME="fields_inherited_from_class_com.github.cage.Cage"><!-- --></A>
@@ -211,16 +244,65 @@ Creates and configures a <A HREF="../../../com/github/cage/Cage.html" title="cla
 </TR>
 </TABLE>
 
+<A NAME="HEIGHT"><!-- --></A><H3>
+HEIGHT</H3>
+<PRE>
+protected static final int <B>HEIGHT</B></PRE>
+<DL>
+<DD>Height of CAPTCHA image.
+<P>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../../constant-values.html#com.github.cage.YCage.HEIGHT">Constant Field Values</A></DL>
+</DL>
+<HR>
+
+<A NAME="WIDTH"><!-- --></A><H3>
+WIDTH</H3>
+<PRE>
+protected static final int <B>WIDTH</B></PRE>
+<DL>
+<DD>Width of CAPTCHA image.
+<P>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../../constant-values.html#com.github.cage.YCage.WIDTH">Constant Field Values</A></DL>
+</DL>
+<HR>
+
 <A NAME="TOKEN_DEFAULT_CHARACTER_SET"><!-- --></A><H3>
 TOKEN_DEFAULT_CHARACTER_SET</H3>
 <PRE>
-public static final char[] <B>TOKEN_DEFAULT_CHARACTER_SET</B></PRE>
+protected static final char[] <B>TOKEN_DEFAULT_CHARACTER_SET</B></PRE>
 <DL>
 <DD>Character set supplied to the <A HREF="../../../com/github/cage/token/RandomTokenGenerator.html" title="class in com.github.cage.token"><CODE>RandomTokenGenerator</CODE></A> used by this
  template.
 <P>
 <DL>
 </DL>
+</DL>
+<HR>
+
+<A NAME="TOKEN_LEN_MIN"><!-- --></A><H3>
+TOKEN_LEN_MIN</H3>
+<PRE>
+protected static final int <B>TOKEN_LEN_MIN</B></PRE>
+<DL>
+<DD>Minimum length of token.
+<P>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../../constant-values.html#com.github.cage.YCage.TOKEN_LEN_MIN">Constant Field Values</A></DL>
+</DL>
+<HR>
+
+<A NAME="TOKEN_LEN_DELTA"><!-- --></A><H3>
+TOKEN_LEN_DELTA</H3>
+<PRE>
+protected static final int <B>TOKEN_LEN_DELTA</B></PRE>
+<DL>
+<DD>Maximum length of token is <A HREF="../../../com/github/cage/YCage.html#TOKEN_LEN_MIN">6</A> +
+ 2.
+<P>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../../constant-values.html#com.github.cage.YCage.TOKEN_LEN_DELTA">Constant Field Values</A></DL>
 </DL>
 
 <!-- ========= CONSTRUCTOR DETAIL ======== -->

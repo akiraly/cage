@@ -46,7 +46,7 @@
 <a class="jxr_linenumber" name="36" href="#36">36</a>  		<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">double</strong> amplitude;
 <a class="jxr_linenumber" name="37" href="#37">37</a>  
 <a class="jxr_linenumber" name="38" href="#38">38</a>  		<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="39" href="#39">39</a>  <em class="jxr_javadoccomment">		 * Constructor</em>
+<a class="jxr_linenumber" name="39" href="#39">39</a>  <em class="jxr_javadoccomment">		 * Constructor.</em>
 <a class="jxr_linenumber" name="40" href="#40">40</a>  <em class="jxr_javadoccomment">		 * </em>
 <a class="jxr_linenumber" name="41" href="#41">41</a>  <em class="jxr_javadoccomment">		 * @param start</em>
 <a class="jxr_linenumber" name="42" href="#42">42</a>  <em class="jxr_javadoccomment">		 *            the starting x offset to generate wave values. Should be</em>
@@ -66,7 +66,7 @@
 <a class="jxr_linenumber" name="56" href="#56">56</a>  		}
 <a class="jxr_linenumber" name="57" href="#57">57</a>  
 <a class="jxr_linenumber" name="58" href="#58">58</a>  		<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="59" href="#59">59</a>  <em class="jxr_javadoccomment">		 * Normalizes parameter to fall into [0, multi * {@link Math#PI}]</em>
+<a class="jxr_linenumber" name="59" href="#59">59</a>  <em class="jxr_javadoccomment">		 * Normalizes parameter to fall into [0, multi * {@link Math#PI}].</em>
 <a class="jxr_linenumber" name="60" href="#60">60</a>  <em class="jxr_javadoccomment">		 * </em>
 <a class="jxr_linenumber" name="61" href="#61">61</a>  <em class="jxr_javadoccomment">		 * @param a</em>
 <a class="jxr_linenumber" name="62" href="#62">62</a>  <em class="jxr_javadoccomment">		 *            to be normalized</em>
@@ -141,53 +141,55 @@
 <a class="jxr_linenumber" name="131" href="#131">131</a> 
 <a class="jxr_linenumber" name="132" href="#132">132</a> 		<strong class="jxr_keyword">int</strong>[] horizontalDelta = calcDeltaArray(horizontal, height);
 <a class="jxr_linenumber" name="133" href="#133">133</a> 
-<a class="jxr_linenumber" name="134" href="#134">134</a> 		<strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">int</strong> x = 0; x &lt; width; x++)
+<a class="jxr_linenumber" name="134" href="#134">134</a> 		<strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">int</strong> x = 0; x &lt; width; x++) {
 <a class="jxr_linenumber" name="135" href="#135">135</a> 			<strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">int</strong> y = 0; y &lt; height; y++) {
 <a class="jxr_linenumber" name="136" href="#136">136</a> 				<strong class="jxr_keyword">int</strong> ny = (y + verticalDelta[x] + height) % height;
 <a class="jxr_linenumber" name="137" href="#137">137</a> 				<strong class="jxr_keyword">int</strong> nx = (x + horizontalDelta[ny] + width) % width;
 <a class="jxr_linenumber" name="138" href="#138">138</a> 				dest.setRGB(nx, ny, src.getRGB(x, y));
 <a class="jxr_linenumber" name="139" href="#139">139</a> 			}
-<a class="jxr_linenumber" name="140" href="#140">140</a> 
-<a class="jxr_linenumber" name="141" href="#141">141</a> 		<strong class="jxr_keyword">return</strong> dest;
-<a class="jxr_linenumber" name="142" href="#142">142</a> 	}
-<a class="jxr_linenumber" name="143" href="#143">143</a> 
-<a class="jxr_linenumber" name="144" href="#144">144</a> 	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="145" href="#145">145</a> <em class="jxr_javadoccomment">	 * Calculates wave delta array.</em>
-<a class="jxr_linenumber" name="146" href="#146">146</a> <em class="jxr_javadoccomment">	 * </em>
-<a class="jxr_linenumber" name="147" href="#147">147</a> <em class="jxr_javadoccomment">	 * @param axisConfig</em>
-<a class="jxr_linenumber" name="148" href="#148">148</a> <em class="jxr_javadoccomment">	 *            config object to transform the wave, not null</em>
-<a class="jxr_linenumber" name="149" href="#149">149</a> <em class="jxr_javadoccomment">	 * @param num</em>
-<a class="jxr_linenumber" name="150" href="#150">150</a> <em class="jxr_javadoccomment">	 *            number of points needed, positive</em>
-<a class="jxr_linenumber" name="151" href="#151">151</a> <em class="jxr_javadoccomment">	 * @return the calculated num length delta array</em>
-<a class="jxr_linenumber" name="152" href="#152">152</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="153" href="#153">153</a> 	<strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">int</strong>[] calcDeltaArray(<a href="../../../../com/github/cage/image/Rippler.html">AxisConfig</a> axisConfig, <strong class="jxr_keyword">int</strong> num) {
-<a class="jxr_linenumber" name="154" href="#154">154</a> 		<strong class="jxr_keyword">int</strong>[] delta = <strong class="jxr_keyword">new</strong> <strong class="jxr_keyword">int</strong>[num];
-<a class="jxr_linenumber" name="155" href="#155">155</a> 
-<a class="jxr_linenumber" name="156" href="#156">156</a> 		<strong class="jxr_keyword">double</strong> start = axisConfig.getStart();
-<a class="jxr_linenumber" name="157" href="#157">157</a> 		<strong class="jxr_keyword">double</strong> period = axisConfig.getLength() / num;
-<a class="jxr_linenumber" name="158" href="#158">158</a> 		<strong class="jxr_keyword">double</strong> amplitude = axisConfig.getAmplitude();
-<a class="jxr_linenumber" name="159" href="#159">159</a> 
-<a class="jxr_linenumber" name="160" href="#160">160</a> 		<strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">int</strong> fi = 0; fi &lt; num; fi++)
-<a class="jxr_linenumber" name="161" href="#161">161</a> 			delta[fi] = (<strong class="jxr_keyword">int</strong>) Math.round(amplitude
-<a class="jxr_linenumber" name="162" href="#162">162</a> 					* Math.sin(start + fi * period));
-<a class="jxr_linenumber" name="163" href="#163">163</a> 
-<a class="jxr_linenumber" name="164" href="#164">164</a> 		<strong class="jxr_keyword">return</strong> delta;
-<a class="jxr_linenumber" name="165" href="#165">165</a> 	}
-<a class="jxr_linenumber" name="166" href="#166">166</a> 
-<a class="jxr_linenumber" name="167" href="#167">167</a> 	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="168" href="#168">168</a> <em class="jxr_javadoccomment">	 * @return vertical config, not null</em>
-<a class="jxr_linenumber" name="169" href="#169">169</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="170" href="#170">170</a> 	<strong class="jxr_keyword">public</strong> <a href="../../../../com/github/cage/image/Rippler.html">AxisConfig</a> getVertical() {
-<a class="jxr_linenumber" name="171" href="#171">171</a> 		<strong class="jxr_keyword">return</strong> vertical;
-<a class="jxr_linenumber" name="172" href="#172">172</a> 	}
-<a class="jxr_linenumber" name="173" href="#173">173</a> 
-<a class="jxr_linenumber" name="174" href="#174">174</a> 	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="175" href="#175">175</a> <em class="jxr_javadoccomment">	 * @return horizontal config, not null</em>
-<a class="jxr_linenumber" name="176" href="#176">176</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="177" href="#177">177</a> 	<strong class="jxr_keyword">public</strong> <a href="../../../../com/github/cage/image/Rippler.html">AxisConfig</a> getHorizontal() {
-<a class="jxr_linenumber" name="178" href="#178">178</a> 		<strong class="jxr_keyword">return</strong> horizontal;
-<a class="jxr_linenumber" name="179" href="#179">179</a> 	}
-<a class="jxr_linenumber" name="180" href="#180">180</a> }
+<a class="jxr_linenumber" name="140" href="#140">140</a> 		}
+<a class="jxr_linenumber" name="141" href="#141">141</a> 
+<a class="jxr_linenumber" name="142" href="#142">142</a> 		<strong class="jxr_keyword">return</strong> dest;
+<a class="jxr_linenumber" name="143" href="#143">143</a> 	}
+<a class="jxr_linenumber" name="144" href="#144">144</a> 
+<a class="jxr_linenumber" name="145" href="#145">145</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="146" href="#146">146</a> <em class="jxr_javadoccomment">	 * Calculates wave delta array.</em>
+<a class="jxr_linenumber" name="147" href="#147">147</a> <em class="jxr_javadoccomment">	 * </em>
+<a class="jxr_linenumber" name="148" href="#148">148</a> <em class="jxr_javadoccomment">	 * @param axisConfig</em>
+<a class="jxr_linenumber" name="149" href="#149">149</a> <em class="jxr_javadoccomment">	 *            config object to transform the wave, not null</em>
+<a class="jxr_linenumber" name="150" href="#150">150</a> <em class="jxr_javadoccomment">	 * @param num</em>
+<a class="jxr_linenumber" name="151" href="#151">151</a> <em class="jxr_javadoccomment">	 *            number of points needed, positive</em>
+<a class="jxr_linenumber" name="152" href="#152">152</a> <em class="jxr_javadoccomment">	 * @return the calculated num length delta array</em>
+<a class="jxr_linenumber" name="153" href="#153">153</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="154" href="#154">154</a> 	<strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">int</strong>[] calcDeltaArray(<a href="../../../../com/github/cage/image/Rippler.html">AxisConfig</a> axisConfig, <strong class="jxr_keyword">int</strong> num) {
+<a class="jxr_linenumber" name="155" href="#155">155</a> 		<strong class="jxr_keyword">int</strong>[] delta = <strong class="jxr_keyword">new</strong> <strong class="jxr_keyword">int</strong>[num];
+<a class="jxr_linenumber" name="156" href="#156">156</a> 
+<a class="jxr_linenumber" name="157" href="#157">157</a> 		<strong class="jxr_keyword">double</strong> start = axisConfig.getStart();
+<a class="jxr_linenumber" name="158" href="#158">158</a> 		<strong class="jxr_keyword">double</strong> period = axisConfig.getLength() / num;
+<a class="jxr_linenumber" name="159" href="#159">159</a> 		<strong class="jxr_keyword">double</strong> amplitude = axisConfig.getAmplitude();
+<a class="jxr_linenumber" name="160" href="#160">160</a> 
+<a class="jxr_linenumber" name="161" href="#161">161</a> 		<strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">int</strong> fi = 0; fi &lt; num; fi++) {
+<a class="jxr_linenumber" name="162" href="#162">162</a> 			delta[fi] = (<strong class="jxr_keyword">int</strong>) Math.round(amplitude
+<a class="jxr_linenumber" name="163" href="#163">163</a> 					* Math.sin(start + fi * period));
+<a class="jxr_linenumber" name="164" href="#164">164</a> 		}
+<a class="jxr_linenumber" name="165" href="#165">165</a> 
+<a class="jxr_linenumber" name="166" href="#166">166</a> 		<strong class="jxr_keyword">return</strong> delta;
+<a class="jxr_linenumber" name="167" href="#167">167</a> 	}
+<a class="jxr_linenumber" name="168" href="#168">168</a> 
+<a class="jxr_linenumber" name="169" href="#169">169</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="170" href="#170">170</a> <em class="jxr_javadoccomment">	 * @return vertical config, not null</em>
+<a class="jxr_linenumber" name="171" href="#171">171</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="172" href="#172">172</a> 	<strong class="jxr_keyword">public</strong> <a href="../../../../com/github/cage/image/Rippler.html">AxisConfig</a> getVertical() {
+<a class="jxr_linenumber" name="173" href="#173">173</a> 		<strong class="jxr_keyword">return</strong> vertical;
+<a class="jxr_linenumber" name="174" href="#174">174</a> 	}
+<a class="jxr_linenumber" name="175" href="#175">175</a> 
+<a class="jxr_linenumber" name="176" href="#176">176</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="177" href="#177">177</a> <em class="jxr_javadoccomment">	 * @return horizontal config, not null</em>
+<a class="jxr_linenumber" name="178" href="#178">178</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="179" href="#179">179</a> 	<strong class="jxr_keyword">public</strong> <a href="../../../../com/github/cage/image/Rippler.html">AxisConfig</a> getHorizontal() {
+<a class="jxr_linenumber" name="180" href="#180">180</a> 		<strong class="jxr_keyword">return</strong> horizontal;
+<a class="jxr_linenumber" name="181" href="#181">181</a> 	}
+<a class="jxr_linenumber" name="182" href="#182">182</a> }
 </pre>
 <hr/><div id="footer">This page was automatically generated by <a href="http://maven.apache.org/">Maven</a></div></body>
 </html>
