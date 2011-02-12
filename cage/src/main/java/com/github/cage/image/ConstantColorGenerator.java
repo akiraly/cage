@@ -30,7 +30,7 @@ public class ConstantColorGenerator implements IGenerator<Color> {
 	private final Color color;
 
 	/**
-	 * Constructor
+	 * Constructor.
 	 * 
 	 * @param color
 	 *            not null

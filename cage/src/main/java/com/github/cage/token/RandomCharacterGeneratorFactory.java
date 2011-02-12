@@ -31,18 +31,18 @@ import com.github.cage.IGeneratorFactory;
 public class RandomCharacterGeneratorFactory implements
 		IGeneratorFactory<Character> {
 	/**
-	 * English lower cased vowel character array
+	 * English lower cased vowel character array.
 	 */
 	public static final char[] ENGLISH_VOWELS = "aeiou".toCharArray();
 
 	/**
-	 * English lower cased consonant character array
+	 * English lower cased consonant character array.
 	 */
 	public static final char[] ENGLISH_CONSONANTS = "bcdfghjklmnpqrstxyvz"
 			.toCharArray();
 
 	/**
-	 * Arab number character array
+	 * Arab number character array.
 	 */
 	public static final char[] ARAB_NUMBERS = "0123456789".toCharArray();
 
@@ -79,12 +79,14 @@ public class RandomCharacterGeneratorFactory implements
 			if (specialCharacterSets != null) {
 				char[] nextCharacterSet = specialCharacterSets.get(next);
 				if (nextCharacterSet != null) {
-					if (nextCharacterSet.length < 1)
+					if (nextCharacterSet.length < 1) {
 						throw new IllegalStateException(
 								"specialCharacterSets should not hold an empty char[] value");
+					}
 					currentCharacterSet = nextCharacterSet;
-				} else
+				} else {
 					currentCharacterSet = defaultCharacterSet;
+				}
 			}
 
 			return next;

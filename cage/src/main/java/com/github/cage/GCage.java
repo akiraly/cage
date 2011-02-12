@@ -15,7 +15,6 @@
  */
 package com.github.cage;
 
-
 /**
  * Creates and configures a {@link Cage} instance that can generate captcha
  * images similar to Google's. This is the "G" template. Simply create an

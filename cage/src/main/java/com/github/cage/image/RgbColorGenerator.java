@@ -31,7 +31,7 @@ public class RgbColorGenerator implements IGenerator<Color> {
 	private final Random rnd;
 
 	/**
-	 * Constructor
+	 * Constructor.
 	 * 
 	 * @param rnd
 	 *            random generator to be used, can be null
@@ -41,15 +41,17 @@ public class RgbColorGenerator implements IGenerator<Color> {
 	}
 
 	public Color next() {
-		int c[] = new int[3];
+		int[] c = new int[3];
 
 		int i = rnd.nextInt(c.length);
 
-		for (int fi = 0; fi < c.length; fi++)
-			if (fi == i)
+		for (int fi = 0; fi < c.length; fi++) {
+			if (fi == i) {
 				c[fi] = rnd.nextInt(71);
-			else
+			} else {
 				c[fi] = rnd.nextInt(256);
+			}
+		}
 
 		return new Color(c[0], c[1], c[2]);
 	}

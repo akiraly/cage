@@ -119,12 +119,13 @@ public class Cage {
 	public Cage(Painter painter, IGenerator<Font> fonts,
 			IGenerator<Color> foregrounds, String format, Float compressRatio,
 			IGenerator<String> tokenGenerator, Random rnd) {
-		if (rnd == null)
+		if (rnd == null) {
 			rnd = new Random();
+		}
 		this.painter = painter != null ? painter : new Painter(rnd);
 		int defFontHeight = this.painter.getHeight() / 2;
 		this.fonts = fonts != null ? fonts : new ObjectRoulette<Font>(rnd, //
-				new Font(Font.SANS_SERIF, Font.PLAIN, defFontHeight),//
+				new Font(Font.SANS_SERIF, Font.PLAIN, defFontHeight), //
 				// new Font(Font.SANS_SERIF, Font.ITALIC, defFontHeight),//
 				new Font(Font.SERIF, Font.PLAIN, defFontHeight), //
 				// new Font(Font.SERIF, Font.ITALIC, defFontHeight), //
@@ -207,9 +208,10 @@ public class Cage {
 		ImageTypeSpecifier type = ImageTypeSpecifier
 				.createFromRenderedImage(img);
 		Iterator<ImageWriter> iwi = ImageIO.getImageWriters(type, this.format);
-		if (iwi == null || !iwi.hasNext())
+		if (iwi == null || !iwi.hasNext()) {
 			throw new IllegalStateException(
 					"No image writer found for format = " + this.format);
+		}
 		ImageWriter iw = iwi.next();
 		try {
 			ImageWriteParam iwp;
@@ -217,8 +219,9 @@ public class Cage {
 				iwp = iw.getDefaultWriteParam();
 				iwp.setCompressionMode(ImageWriteParam.MODE_EXPLICIT);
 				iwp.setCompressionQuality(compressRatio);
-			} else
+			} else {
 				iwp = null;
+			}
 			ImageOutputStream ios = ImageIO.createImageOutputStream(ostream);
 			try {
 				iw.setOutput(ios);

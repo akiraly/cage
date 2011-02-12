@@ -30,6 +30,18 @@ import com.github.cage.IGeneratorFactory;
  * @author akiraly
  */
 public class RandomTokenGenerator implements IGenerator<String> {
+
+	/**
+	 * Default minimum length of token.
+	 */
+	protected static final int DEFAULT_TOKEN_LEN_MIN = 8;
+
+	/**
+	 * Default maximum length of token is {@link #DEFAULT_TOKEN_LEN_MIN} +
+	 * {@value #DEFAULT_TOKEN_LEN_DELTA}.
+	 */
+	protected static final int DEFAULT_TOKEN_LEN_DELTA = 2;
+
 	private final IGeneratorFactory<Character> characterGeneratorFactory;
 	private final int minLength;
 	private final int delta;
@@ -49,7 +61,7 @@ public class RandomTokenGenerator implements IGenerator<String> {
 	 *            random generator to be used, can be null
 	 */
 	public RandomTokenGenerator(Random rnd) {
-		this(rnd, 8, 2);
+		this(rnd, DEFAULT_TOKEN_LEN_MIN, DEFAULT_TOKEN_LEN_DELTA);
 	}
 
 	/**
@@ -109,8 +121,9 @@ public class RandomTokenGenerator implements IGenerator<String> {
 		char[] word = new char[length];
 		IGenerator<Character> generator = characterGeneratorFactory.next();
 
-		for (int fi = 0; fi < word.length; fi++)
+		for (int fi = 0; fi < word.length; fi++) {
 			word[fi] = generator.next();
+		}
 
 		return new String(word);
 	}

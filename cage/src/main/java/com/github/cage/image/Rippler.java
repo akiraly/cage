@@ -36,7 +36,7 @@ public class Rippler {
 		private final double amplitude;
 
 		/**
-		 * Constructor
+		 * Constructor.
 		 * 
 		 * @param start
 		 *            the starting x offset to generate wave values. Should be
@@ -56,7 +56,7 @@ public class Rippler {
 		}
 
 		/**
-		 * Normalizes parameter to fall into [0, multi * {@link Math#PI}]
+		 * Normalizes parameter to fall into [0, multi * {@link Math#PI}].
 		 * 
 		 * @param a
 		 *            to be normalized
@@ -131,12 +131,13 @@ public class Rippler {
 
 		int[] horizontalDelta = calcDeltaArray(horizontal, height);
 
-		for (int x = 0; x < width; x++)
+		for (int x = 0; x < width; x++) {
 			for (int y = 0; y < height; y++) {
 				int ny = (y + verticalDelta[x] + height) % height;
 				int nx = (x + horizontalDelta[ny] + width) % width;
 				dest.setRGB(nx, ny, src.getRGB(x, y));
 			}
+		}
 
 		return dest;
 	}
@@ -157,9 +158,10 @@ public class Rippler {
 		double period = axisConfig.getLength() / num;
 		double amplitude = axisConfig.getAmplitude();
 
-		for (int fi = 0; fi < num; fi++)
+		for (int fi = 0; fi < num; fi++) {
 			delta[fi] = (int) Math.round(amplitude
 					* Math.sin(start + fi * period));
+		}
 
 		return delta;
 	}

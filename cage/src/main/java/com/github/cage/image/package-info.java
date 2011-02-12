@@ -18,3 +18,4 @@
  * central class is {@link com.github.cage.image.Painter}.
  */
 package com.github.cage.image;
+

@@ -13,10 +13,3 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/**
- * This is the main package of Cage, for usage example see
- * {@link com.github.cage.Cage} or one of the predefined templates like
- * {@link com.github.cage.GCage} or {@link com.github.cage.YCage}.
- */
-package com.github.cage;
-

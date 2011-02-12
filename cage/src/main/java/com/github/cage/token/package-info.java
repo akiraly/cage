@@ -18,3 +18,4 @@
  * central class is {@link com.github.cage.token.RandomTokenGenerator}.
  */
 package com.github.cage.token;
+

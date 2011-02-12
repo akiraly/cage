@@ -44,14 +44,14 @@ public class Painter {
 	 */
 	public static enum Quality {
 		/**
-		 * Rendering hints should be set to minimum quality
+		 * Rendering hints should be set to minimum quality.
 		 */
 		MIN, /**
-		 * Rendering hints should be not set so they use the default
+		 * Rendering hints should be not set so they use the default.
 		 * quality
 		 */
 		DEFAULT, /**
-		 * Rendering hints should be set to maximum quality
+		 * Rendering hints should be set to maximum quality.
 		 */
 		MAX
 	}
@@ -77,8 +77,7 @@ public class Painter {
 	private final Random rnd;
 
 	/**
-	 * Default constructor calls
-	 * {@link Painter#Painter(int, int, Color, Quality, boolean, boolean, boolean, boolean, Random)}
+	 * Constructor.
 	 */
 	public Painter() {
 		this(DEFAULT_WIDTH, DEFAULT_HEIGHT, null, null, true, true, false,
@@ -86,7 +85,7 @@ public class Painter {
 	}
 
 	/**
-	 * Constructor
+	 * Constructor.
 	 * 
 	 * @param rnd
 	 *            random generator to be used, can be null
@@ -97,7 +96,7 @@ public class Painter {
 	}
 
 	/**
-	 * Constructor
+	 * Constructor.
 	 * 
 	 * @param width
 	 *            captcha image width, default {@link #DEFAULT_WIDTH}
@@ -152,13 +151,16 @@ public class Painter {
 	 * @return the generated image
 	 */
 	public BufferedImage draw(Font font, Color fGround, String text) {
-		if (font == null)
+		if (font == null) {
 			throw new IllegalArgumentException("Font can not be null.");
-		if (fGround == null)
+		}
+		if (fGround == null) {
 			throw new IllegalArgumentException(
 					"Foreground color can not be null.");
-		if (text == null || text.length() < 1)
+		}
+		if (text == null || text.length() < 1) {
 			throw new IllegalArgumentException("No text given.");
+		}
 
 		BufferedImage img = createImage();
 
@@ -200,9 +202,10 @@ public class Painter {
 	 *         instance of {@link Graphics2D}.
 	 */
 	protected Graphics2D configureGraphics(Graphics g, Font font, Color fGround) {
-		if (!(g instanceof Graphics2D))
+		if (!(g instanceof Graphics2D)) {
 			throw new IllegalStateException("Graphics (" + g
 					+ ") that is not an instance of Graphics2D.");
+		}
 		Graphics2D g2 = (Graphics2D) g;
 
 		configureGraphicsQuality(g2);
@@ -223,8 +226,7 @@ public class Painter {
 	 *            to be configured, not null
 	 */
 	protected void configureGraphicsQuality(Graphics2D g2) {
-		switch (quality) {
-		case MAX:
+		if (quality == Quality.MAX) {
 			g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,
 					RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 			g2.setRenderingHint(RenderingHints.KEY_FRACTIONALMETRICS,
@@ -241,8 +243,7 @@ public class Painter {
 					RenderingHints.VALUE_ALPHA_INTERPOLATION_QUALITY);
 			g2.setRenderingHint(RenderingHints.KEY_RENDERING,
 					RenderingHints.VALUE_RENDER_QUALITY);
-			break;
-		case MIN:
+		} else if (quality == Quality.MIN) {
 			g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,
 					RenderingHints.VALUE_TEXT_ANTIALIAS_OFF);
 			g2.setRenderingHint(RenderingHints.KEY_FRACTIONALMETRICS,
@@ -259,7 +260,6 @@ public class Painter {
 					RenderingHints.VALUE_ALPHA_INTERPOLATION_SPEED);
 			g2.setRenderingHint(RenderingHints.KEY_RENDERING,
 					RenderingHints.VALUE_RENDER_SPEED);
-			break;
 		}
 	}
 
@@ -294,10 +294,11 @@ public class Painter {
 		float bx = (float) bounds.getX();
 		float by = (float) bounds.getY();
 		// draw outline if needed
-		if (outlineEnabled)
+		if (outlineEnabled) {
 			g.draw(vector.getOutline(Math.signum(rnd.nextFloat() - 0.5f) * 1
 					* width / 200 - bx, Math.signum(rnd.nextFloat() - 0.5f) * 1
 					* height / 70 + height - by));
+		}
 		g.drawGlyphVector(vector, -bx, height - by);
 	}
 
@@ -325,18 +326,19 @@ public class Painter {
 			if (rotateEnabled) {
 				AffineTransform tr = AffineTransform
 						.getRotateInstance(rotateCur);
-				if (rnd.nextDouble() < 0.25)
+				if (rnd.nextDouble() < 0.25) {
 					rotateStep *= -1;
+				}
 				rotateCur += rotateStep;
 				v.setGlyphTransform(fi, tr);
 			}
 			Point2D pos = v.getGlyphPosition(fi);
 			Rectangle2D bounds = v.getGlyphVisualBounds(fi).getBounds2D();
 			Point2D newPos;
-			if (prePos == null)
+			if (prePos == null) {
 				newPos = new Point2D.Double(pos.getX() - bounds.getX(),
 						pos.getY());
-			else
+			} else {
 				newPos = new Point2D.Double(
 						preBounds.getMaxX()
 								+ pos.getX()
@@ -345,6 +347,7 @@ public class Painter {
 										bounds.getWidth())
 								* (rnd.nextDouble() / 20 + (rotateEnabled ? 0.27
 										: 0.20)), pos.getY());
+			}
 			v.setGlyphPosition(fi, newPos);
 			prePos = newPos;
 			preBounds = v.getGlyphVisualBounds(fi).getBounds2D();
@@ -390,10 +393,13 @@ public class Painter {
 	 */
 	protected void fillBlurArray(float[] array) {
 		float sum = 0;
-		for (int fi = 0; fi < array.length; fi++)
-			sum += array[fi] = rnd.nextFloat();
-		for (int fi = 0; fi < array.length; fi++)
+		for (int fi = 0; fi < array.length; fi++) {
+			array[fi] = rnd.nextFloat();
+			sum += array[fi];
+		}
+		for (int fi = 0; fi < array.length; fi++) {
 			array[fi] /= sum;
+		}
 	}
 
 	/**
