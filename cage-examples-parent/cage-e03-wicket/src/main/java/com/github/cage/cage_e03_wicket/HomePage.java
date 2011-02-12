@@ -121,10 +121,6 @@ public class HomePage extends WebPage {
 		return token;
 	}
 
-	public void setToken(String token) {
-		this.token = token;
-	}
-
 	public String getCaptcha() {
 		return captcha;
 	}
@@ -132,5 +128,4 @@ public class HomePage extends WebPage {
 	public void setCaptcha(String captcha) {
 		this.captcha = captcha;
 	}
-
 }

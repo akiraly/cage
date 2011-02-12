@@ -1,3 +1,205 @@
 Wicket Example
 
-	TODO, available in git
+	The complete source code for this example is available in the 
+	{{{https://github.com/akiraly/cage/tree/master/cage-examples-parent/cage-e03-wicket}git repo}}.
+
+* Overview
+
+	This example shows how you can integrate Cage into a wicket app. This is a
+	wicket 1.5 RC1 (1.4 would be not much different) + standard Java Servlet 2.5
+	web application. This is the wicket equivalent of the
+	{{{./e02_servlet.html}servlet example}}. The aim of	the app is to show a
+	form with a captcha and an input field. The user has to type in the correct
+	text seen on the picture. The app shows a good or a	bad message depending on
+	the user input equaling the token.
+
+	Four relevant files are in this project. A HomePage.java class representing
+	our	page and holding all the logic. A HomePage.html is the view for this
+	page. A WicketApplication class and the standard web.xml descriptor for
+	initializing wicket.
+
+* HomePage.java
+
+	This is the most important file of this app. It shows how the page is
+	composed in wicket and how a {{{./apidocs/com/github/cage/GCage.html}GCage}}
+	object is used for captcha generation. This class uses
+	cage.draw(String token) method which returns the image in a byte[] form.
+	The array is written to the response by wicket.
+
++--
+public class HomePage extends WebPage {
+  private static final long serialVersionUID = 3303458191832318970L;
+  private static final Cage cage = new GCage();
+
+  private String token = cage.getTokenGenerator().next();
+  private String captcha;
+  private boolean showGoodResult;
+  private boolean showBadResult;
+
+  public HomePage() {
+    add(new WebMarkupContainer("goodResult") {
+      private static final long serialVersionUID = -5279236538017405828L;
+
+      @Override
+      protected void onConfigure() {
+        super.onConfigure();
+        setVisible(showGoodResult);
+        showGoodResult = false;
+      }
+    });
+    add(new WebMarkupContainer("badResult") {
+      private static final long serialVersionUID = -6479933043124566245L;
+
+      @Override
+      protected void onConfigure() {
+        super.onConfigure();
+        setVisible(showBadResult);
+        showBadResult = false;
+      }
+    });
+
+    add(new Form<HomePage>("form",
+        new CompoundPropertyModel<HomePage>(this)) {
+      private static final long serialVersionUID = -2783383042739263677L;
+
+      @Override
+      protected void onInitialize() {
+        super.onInitialize();
+        add(new RequiredTextField<String>("captcha") {
+          private static final long serialVersionUID = 8416111619173955610L;
+
+          @Override
+          protected void onComponentTag(ComponentTag tag) {
+            super.onComponentTag(tag);
+            tag.put("value", "");
+          };
+        }.add(new StringValidator() {
+          private static final long serialVersionUID = 3888825725858419028L;
+
+          @Override
+          protected void onValidate(IValidatable<String> validatable) {
+            if (token == null
+                || !token.equals(validatable.getValue()))
+              error(validatable);
+          }
+        }));
+      }
+
+      @Override
+      protected void onSubmit() {
+        super.onSubmit();
+        onPost(true);
+      }
+
+      @Override
+      protected void onError() {
+        super.onError();
+        onPost(false);
+      }
+
+      protected void onPost(boolean good) {
+        showGoodResult = good;
+        showBadResult = !good;
+        token = cage.getTokenGenerator().next();
+      }
+    });
+
+    add(new NonCachingImage("captchaImage", new DynamicImageResource(
+        cage.getFormat()) {
+      private static final long serialVersionUID = -1475355045487272906L;
+
+      @Override
+      protected byte[] getImageData(Attributes attributes) {
+        return cage.draw(token);
+      }
+    }));
+  }
+
+  public String getToken() {
+    return token;
+  }
+
+  public String getCaptcha() {
+    return captcha;
+  }
+
+  public void setCaptcha(String captcha) {
+    this.captcha = captcha;
+  }
+}
++--
+
+* HomePage.html
+
+	This is the view. A plain html with a few wicket:id attributes.
+
++--
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Captcha Reader</title>
+  </head>
+  <body>
+    <h1 wicket:id="goodResult" style="color: green;">Your kung fu is good!</h1>
+    <h1 wicket:id="badResult" style="color: red;">This is not right. Try again!</h1>
+    <p>Type in the word seen on the picture</p>
+    <form wicket:id="form">
+      <input wicket:id="captcha" type="text" autocomplete="off" />
+      <input type="submit" />
+    </form>
+    <img wicket:id="captchaImage" alt="captcha image" />
+  </body>
+</html>
++--
+
+* WicketApplication.java
+
+	Central class of the wicket web application. Not much in it. Tells wicket
+	to use our HomePage class as starting page. Also configures view encoding
+	to UTF-8 and turns on html compression (cool stuff).
+
++--
+public class WicketApplication extends WebApplication {
+  @Override
+  public Class<? extends Page> getHomePage() {
+    return HomePage.class;
+  }
+
+  @Override
+  protected void init() {
+    super.init();
+
+    getMarkupSettings().setDefaultMarkupEncoding(CharEncoding.UTF_8);
+    getMarkupSettings().setCompressWhitespace(true);
+  }
+}
++--
+
+* web.xml
+
+	The snippet below starts up wicket in deployment mode. All requests of the
+	web application go trough the wicket filter so both the page and the captcha
+	image can be served by it.
+
++--
+<context-param>
+  <param-name>wicket.configuration</param-name>
+  <param-value>deployment</param-value>
+</context-param>
+
+<filter>
+  <filter-name>wicketApp</filter-name>
+  <filter-class>org.apache.wicket.protocol.http.WicketFilter</filter-class>
+  <init-param>
+    <param-name>applicationClassName</param-name>
+    <param-value>com.github.cage.cage_e03_wicket.WicketApplication</param-value>
+  </init-param>
+</filter>
+
+<filter-mapping>
+  <filter-name>wicketApp</filter-name>
+  <url-pattern>/*</url-pattern>
+</filter-mapping>
++--
