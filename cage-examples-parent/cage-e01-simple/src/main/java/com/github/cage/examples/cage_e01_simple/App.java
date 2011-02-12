@@ -31,7 +31,6 @@ import com.github.cage.YCage;
  * 
  */
 public class App {
-
 	public static void main(String[] args) throws IOException {
 		generate(new GCage(), 10, "cg1", ".jpg", "colding");
 		generate(new YCage(), 10, "cy1", ".jpg", "eT6wLAH");
@@ -41,7 +40,6 @@ public class App {
 
 	protected static void generate(Cage cage, int num, String namePrefix,
 			String namePostfix, String text) throws IOException {
-
 		for (int fi = 0; fi < num; fi++) {
 			OutputStream os = new FileOutputStream(namePrefix + fi
 					+ namePostfix, false);

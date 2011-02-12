@@ -22,6 +22,12 @@ import java.io.OutputStream;
 import com.github.cage.Cage;
 import com.github.cage.GCage;
 
+/**
+ * A quick start example showcasing the usage of Cage. Generates a single
+ * captcha image with the "G" template and writes it to a file.
+ * 
+ * @author akiraly
+ */
 public class QuickStart {
 	public static void main(String[] args) throws IOException {
 		Cage cage = new GCage();

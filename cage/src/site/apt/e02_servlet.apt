@@ -1,3 +1,159 @@
 Servlet Example
 
-	TODO, available in git
+	The complete source code for this example is available in the 
+	{{{https://github.com/akiraly/cage/tree/master/cage-examples-parent/cage-e02-servlet}git repo}}.
+
+* Overview
+
+	This example shows how you can integrate Cage into a web app. This is a
+	standard Java Servlet 2.5 + JSP 2.1 web application. The aim of
+	the app is to show a form with a captcha and an input field. The user has
+	to type in the correct text seen on the picture. The app shows a good or a
+	bad message depending on the user input equaling the token.
+
+	Three relevant files are in this project. A servlet serving Cage captchas
+	and also providing some service methods which are used by a jsp holding
+	the business and view generation logic. The last file is the standard
+	web app descriptor: web.xml.
+
+* CaptchaServlet.java
+
+	Uses a single {{{./apidocs/com/github/cage/GCage.html}GCage}} object to
+	generate captcha images that are written directly back to the user response.
+	This is done in the standard doGet() (and a helper) method.
+	
+	Two service methods are also present: generateToken() and setToken(). These
+	are used by the jsp to drive the token generation and storing.
+
++--
+public class CaptchaServlet extends HttpServlet {
+  private static final long serialVersionUID = 1490947492185481844L;
+
+  private static final Cage cage = new GCage();
+
+  /**
+   * Generates a captcha token and stores it in the session.
+   * 
+   * @param session
+   *            where to store the captcha.
+   */
+  public static void generateToken(HttpSession session) {
+    String token = cage.getTokenGenerator().next();
+
+    session.setAttribute("captchaToken", token);
+  }
+
+  /**
+   * Used to retrieve previously stored captcha token from session.
+   * 
+   * @param session
+   *            where the token is possibly stored.
+   * @return token or null if there was none
+   */
+  public static String getToken(HttpSession session) {
+    Object val = session.getAttribute("captchaToken");
+
+    return val != null ? val.toString() : null;
+  }
+
+  @Override
+  protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+      throws ServletException, IOException {
+    HttpSession session = req.getSession(false);
+    String token = session != null ? getToken(session) : null;
+    if (token == null) {
+      resp.sendError(HttpServletResponse.SC_NOT_FOUND,
+          "Captcha not found.");
+
+      return;
+    }
+
+    setResponseHeaders(resp);
+    cage.draw(token, resp.getOutputStream());
+  }
+
+  /**
+   * Helper method, disables HTTP caching.
+   * 
+   * @param resp
+   *            response object to be modified
+   */
+  protected void setResponseHeaders(HttpServletResponse resp) {
+    resp.setContentType("image/" + cage.getFormat());
+    resp.setHeader("Cache-Control",
+        "private, no-cache, no-store, must-revalidate");
+    resp.setHeader("Pragma", "no-cache");
+    long time = System.currentTimeMillis();
+    resp.setDateHeader("Last-Modified", time);
+    resp.setDateHeader("Expires", time);
+  }
+}
++--
+
+* web.xml
+
+	CaptchaServlet mapping is defined here so requests to
+	$\{context-path\}/captcha are handled by the servlet. The relevant xml
+	snippet is seen below.
+
++--
+<servlet>
+  <servlet-name>captcha</servlet-name>
+  <servlet-class>com.github.cage.examples.cage_e02_servlet.CaptchaServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+  <servlet-name>captcha</servlet-name>
+  <url-pattern>/captcha</url-pattern>
+</servlet-mapping>
++--
+
+* index.jsp
+
+	This is the entry point for our application. Shows the form, the captcha
+	image and the response messages if there are any. Also contains the business
+	logic (in real world apps you should move the logic out from the view).
+
+	You can see how the service methods of CaptchaServlet (generateToken and
+	getToken) are called. The capthca image element's href is pointed to the
+	CaptchaServlet mapping url.
+
+	Validation is done on POST requests.
+
++--
+<%@page import="com.github.cage.examples.cage_e02_servlet.CaptchaServlet"%><%@
+page contentType="text/html" pageEncoding="UTF-8"%><%
+  boolean showGoodResult;
+  boolean showBadResult;
+  if ("POST".equals(request.getMethod())) {
+    String sessionToken = CaptchaServlet.getToken(session);
+    String requestToken = request.getParameter("captcha");
+    showGoodResult = sessionToken != null && sessionToken.equals(requestToken);
+    showBadResult = !showGoodResult;
+  } else {
+    showGoodResult = showBadResult = false;
+  }
+
+  CaptchaServlet.generateToken(session);
+%><!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Captcha Reader</title>
+  </head>
+  <body>
+<%  if (showGoodResult) {%>
+  <h1 style="color: green;">Your kung fu is good!</h1>
+<%  } else if (showBadResult) {%>
+  <h1 style="color: red;">This is not right. Try again!</h1>
+<%  } %>
+    <p>Type in the word seen on the picture</p>
+    <form action="" method="post">
+      <input name="captcha" type="text" autocomplete="off" />
+      <input type="submit" />
+    </form>
+    <img alt="captcha image" src="captcha" />
+  </body>
+</html>
++--
+

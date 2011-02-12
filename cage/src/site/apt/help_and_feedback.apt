@@ -1,0 +1,25 @@
+Help & Feedback
+
+* Mailing List
+
+	If you need help with Cage or want to discuss new ideas please join the mailing
+	list hosted at Google Groups.
+
+%{snippet|verbatim=false|file=src/site/html/google_groups_promobox.html}
+
+	If you are already a member of the list you can post to it by sending an
+	email to the {{{mailto:cage-lib@googlegroups.com}cage-lib@googlegroups.com}}
+	address.
+
+	Archives are available
+	{{{http://groups.google.com/group/cage-lib}online}}.
+
+* Issue tracker
+
+	If you want propose an enhancement or found a bug please open a new ticket
+	in the {{{https://github.com/akiraly/cage/issues}issue tracker}}.
+	
+	For bugs do not forget to specify the environment and cage version you are
+	using and to attach a small quick start that reproduces your issue.
+
+	Patches are highly appreciated.

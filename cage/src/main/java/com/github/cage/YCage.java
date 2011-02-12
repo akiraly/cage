@@ -55,7 +55,7 @@ public class YCage extends com.github.cage.Cage {
 			+ new String(
 					RandomCharacterGeneratorFactory.DEFAULT_DEFAULT_CHARACTER_SET)
 					.replaceAll("i|o", "").toUpperCase(Locale.ENGLISH) + new String(
-			RandomCharacterGeneratorFactory.ARAB_NUMBERS).replaceAll("0|1|9",
+			RandomCharacterGeneratorFactory.ARABIC_NUMERALS).replaceAll("0|1|9",
 			"")).toCharArray();
 
 	/**

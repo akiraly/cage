@@ -7,8 +7,9 @@ page contentType="text/html" pageEncoding="UTF-8"%><%
 		String requestToken = request.getParameter("captcha");
 		showGoodResult = sessionToken != null && sessionToken.equals(requestToken);
 		showBadResult = !showGoodResult;
-	} else
+	} else {
 		showGoodResult = showBadResult = false;
+	}
 
 	CaptchaServlet.generateToken(session);
 %><!DOCTYPE html>

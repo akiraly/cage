@@ -4,9 +4,9 @@ QuickStart
 
 +---
 <dependency>
-	<groupId>com.github.cage</groupId>
-	<artifactId>cage</artifactId>
-	<version>1.0</version>
+  <groupId>com.github.cage</groupId>
+  <artifactId>cage</artifactId>
+  <version>1.0</version>
 </dependency>
 +---
 
@@ -19,16 +19,16 @@ QuickStart
 
 +---
 public class QuickStart {
-	public static void main(String[] args) throws IOException {
-		Cage cage = new GCage();
+  public static void main(String[] args) throws IOException {
+    Cage cage = new GCage();
 
-		OutputStream os = new FileOutputStream("captcha.jpg", false);
-		try {
-			cage.draw(cage.getTokenGenerator().next(), os);
-		} finally {
-			os.close();
-		}
-	}
+    OutputStream os = new FileOutputStream("captcha.jpg", false);
+    try {
+      cage.draw(cage.getTokenGenerator().next(), os);
+    } finally {
+      os.close();
+    }
+  }
 }
 +---
 

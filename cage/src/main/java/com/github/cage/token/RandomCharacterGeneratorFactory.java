@@ -42,9 +42,9 @@ public class RandomCharacterGeneratorFactory implements
 			.toCharArray();
 
 	/**
-	 * Arab number character array.
+	 * Arabic numeral character array.
 	 */
-	public static final char[] ARAB_NUMBERS = "0123456789".toCharArray();
+	public static final char[] ARABIC_NUMERALS = "0123456789".toCharArray();
 
 	/**
 	 * Default character set for the default case. It contains the English lower

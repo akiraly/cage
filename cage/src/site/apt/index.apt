@@ -22,11 +22,11 @@ impossible or at least very hard for a computer.
 	
 	* it is fast (on the test pc 3-5 msec / image)
 	
-	* it is small (only a small jar, no external dependency only Java 1.5 or
-	newer is needed)
+	* it is small (a single, small jar, no external dependencies, only Java 1.5
+	or newer is needed)
 	
-	* supports a wide variety of effects (like symbol crowding, rotating,
-	ripple - waving, outline shadow, blurring)
+	* supports a wide variety of effects (symbol crowding, rotating,
+	ripple - waving, outline shadowing and blurring)
 	
 	* has two predefined templates that mimics those captchas used by large
 	email providers. See {{{./templates.html}Templates}} for more info.

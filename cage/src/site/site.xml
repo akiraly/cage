@@ -8,13 +8,20 @@
 		<href>${project.url}/index.html</href>
 	</bannerLeft>
 	<body>
+		<head>
+			<meta name="keywords" content="cage, captcha, java, maven" />
+			<meta name="description"
+				content="Cage is a CAPTCHA image generator java library. It is fast, small and simple.
+Its goal is to generate images that are easy to read for a human but impossible
+or at least very hard for a computer." />
+		</head>
 		<links>
 			<item name="About" href="index.html" />
 			<item name="QuickStart" href="quickstart.html" />
 			<item name="Templates" href="templates.html" />
 			<item name="Examples" href="examples.html" />
 			<item name="Download" href="download.html" />
-			<item name="Mailing List" href="mailinglist.html" />
+			<item name="Help &amp; Feedback" href="help_and_feedback.html" />
 			<item name="Javadoc" href="apidocs/index.html" />
 		</links>
 		<menu name="Overview">
@@ -27,7 +34,7 @@
 				<item name="Wicket" href="e03_wicket.html" />
 			</item>
 			<item name="Download" href="download.html" />
-			<item name="Mailing List" href="mailinglist.html" />
+			<item name="Help &amp; Feedback" href="help_and_feedback.html" />
 			<item name="Javadoc" href="apidocs/index.html" />
 		</menu>
 		<!--menu ref="parent" / -->

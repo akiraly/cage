@@ -38,16 +38,29 @@ public class CaptchaServlet extends HttpServlet {
 
 	private static final Cage cage = new GCage();
 
-	public static String getToken(HttpSession session) {
-		Object val = session.getAttribute("captchaToken");
-
-		return val != null ? val.toString() : null;
-	}
-
+	/**
+	 * Generates a captcha token and stores it in the session.
+	 * 
+	 * @param session
+	 *            where to store the captcha.
+	 */
 	public static void generateToken(HttpSession session) {
 		String token = cage.getTokenGenerator().next();
 
 		session.setAttribute("captchaToken", token);
+	}
+
+	/**
+	 * Used to retrieve previously stored captcha token from session.
+	 * 
+	 * @param session
+	 *            where the token is possibly stored.
+	 * @return token or null if there was none
+	 */
+	public static String getToken(HttpSession session) {
+		Object val = session.getAttribute("captchaToken");
+
+		return val != null ? val.toString() : null;
 	}
 
 	@Override
@@ -66,6 +79,12 @@ public class CaptchaServlet extends HttpServlet {
 		cage.draw(token, resp.getOutputStream());
 	}
 
+	/**
+	 * Helper method, disables HTTP caching.
+	 * 
+	 * @param resp
+	 *            response object to be modified
+	 */
 	protected void setResponseHeaders(HttpServletResponse resp) {
 		resp.setContentType("image/" + cage.getFormat());
 		resp.setHeader("Cache-Control",
