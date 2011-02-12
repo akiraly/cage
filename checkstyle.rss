@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<rss version="0.91">
+  <channel>
+    <title>CAptcha GEnerator - Checkstyle report</title>
+    <link>http://akiraly.github.com/cage</link>
+    <description>CAptcha GEnerator - Checkstyle report</description>
+    <language>en-us</language>
+    <copyright>&#169;2011</copyright>
+    <item>
+      <title>File: 15,
+             Errors: 8,
+             Warnings: 0,
+             Infos: 0
+      </title>
+            <link>http://akiraly.github.com/cage/checkstyle.html</link>
+      <description>
+        <p>Click <a href="http://akiraly.github.com/cage/checkstyle.html">here</a> for the full Checkstyle report.</p>
+
+        <table summary="Files" boder="1">
+          <thead>
+            <tr>
+              <th>Files</th>
+              <th style="width:30px;"><abbr title="Info">I</abbr></th>
+              <th style="width:30px;"><abbr title="Warning">W</abbr></th>
+              <th style="width:30px;"><abbr title="Error">E</abbr></th>
+            </tr>
+          </thead>
+          <tbody>
+                          <tr>
+                <td>
+                  <a href="http://akiraly.github.com/cage/checkstyle.html#com.github.cage.token.RandomTokenGenerator.java">com/github/cage/token/RandomTokenGenerator.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://akiraly.github.com/cage/checkstyle.html#com.github.cage.package-info.java">com/github/cage/package-info.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://akiraly.github.com/cage/checkstyle.html#com.github.cage.IGeneratorFactory.java">com/github/cage/IGeneratorFactory.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://akiraly.github.com/cage/checkstyle.html#com.github.cage.image.package-info.java">com/github/cage/image/package-info.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://akiraly.github.com/cage/checkstyle.html#com.github.cage.YCage.java">com/github/cage/YCage.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://akiraly.github.com/cage/checkstyle.html#com.github.cage.IGenerator.java">com/github/cage/IGenerator.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://akiraly.github.com/cage/checkstyle.html#com.github.cage.image.ConstantColorGenerator.java">com/github/cage/image/ConstantColorGenerator.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://akiraly.github.com/cage/checkstyle.html#com.github.cage.image.Painter.java">com/github/cage/image/Painter.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://akiraly.github.com/cage/checkstyle.html#com.github.cage.ObjectRoulette.java">com/github/cage/ObjectRoulette.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://akiraly.github.com/cage/checkstyle.html#com.github.cage.token.RandomCharacterGeneratorFactory.java">com/github/cage/token/RandomCharacterGeneratorFactory.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  3
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://akiraly.github.com/cage/checkstyle.html#com.github.cage.image.RgbColorGenerator.java">com/github/cage/image/RgbColorGenerator.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://akiraly.github.com/cage/checkstyle.html#com.github.cage.token.package-info.java">com/github/cage/token/package-info.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://akiraly.github.com/cage/checkstyle.html#com.github.cage.Cage.java">com/github/cage/Cage.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://akiraly.github.com/cage/checkstyle.html#com.github.cage.GCage.java">com/github/cage/GCage.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://akiraly.github.com/cage/checkstyle.html#com.github.cage.image.Rippler.java">com/github/cage/image/Rippler.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                      </tbody>
+        </table>
+        
+      </description>
+    </item>
+  </channel>
+</rss>
+
