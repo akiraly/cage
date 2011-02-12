@@ -14,6 +14,7 @@
 				content="Cage is a CAPTCHA image generator java library. It is fast, small and simple.
 Its goal is to generate images that are easy to read for a human but impossible
 or at least very hard for a computer." />
+			<link rel="shortcut icon" href="s/i/icon32.ico" />
 		</head>
 		<links>
 			<item name="About" href="index.html" />
