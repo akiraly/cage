@@ -105,7 +105,7 @@ public class Cage {
 	 * @param format
 	 *            output format, default "jpeg", can be null
 	 * @param compressRatio
-	 *            a number in [0f, 1f) interval if compression should be used
+	 *            a number in [0f, 1f] interval if compression should be used
 	 *            with the output format. The format must support compression
 	 *            (like jpeg and png). If null no compression is done.
 	 * @param tokenGenerator

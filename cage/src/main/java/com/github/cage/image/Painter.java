@@ -37,8 +37,6 @@ import java.util.Random;
  * 
  */
 public class Painter {
-	private static final long serialVersionUID = 5691787632585996912L;
-
 	/**
 	 * Enumeration for different image quality levels.
 	 */
@@ -54,78 +52,6 @@ public class Painter {
 		 * Rendering hints should be set to maximum quality.
 		 */
 		MAX
-	}
-
-	/**
-	 * Class to represent used effect configuration.
-	 */
-	public static class EffectConfig {
-		private final boolean rippleEnabled;
-		private final boolean blurEnabled;
-		private final boolean outlineEnabled;
-		private final boolean rotateEnabled;
-
-		/**
-		 * Constructor.
-		 */
-		public EffectConfig() {
-			this(true, true, false, true);
-		}
-
-		/**
-		 * Constructor.
-		 * 
-		 * @param rippleEnabled
-		 *            waving effect should be used, default true, disabling this
-		 *            helps performance
-		 * @param blurEnabled
-		 *            should the image be blurred, default true, disabling this
-		 *            helps performance
-		 * @param outlineEnabled
-		 *            should a shifted, font colored outline be drawn behind the
-		 *            characters, default false, disabling this helps
-		 *            performance slightly
-		 * @param rotateEnabled
-		 *            should the letters be rotated independently, default true,
-		 *            disabling this helps performance slightly
-		 */
-		public EffectConfig(boolean rippleEnabled, boolean blurEnabled,
-				boolean outlineEnabled, boolean rotateEnabled) {
-			super();
-			this.rippleEnabled = rippleEnabled;
-			this.blurEnabled = blurEnabled;
-			this.outlineEnabled = outlineEnabled;
-			this.rotateEnabled = rotateEnabled;
-		}
-
-		/**
-		 * @return true if the image will be rippled (waved)
-		 */
-		public boolean isRippleEnabled() {
-			return rippleEnabled;
-		}
-
-		/**
-		 * @return true if the image will be blurred
-		 */
-		public boolean isBlurEnabled() {
-			return blurEnabled;
-		}
-
-		/**
-		 * @return true if outline shadow for text will be drawn on the image
-		 */
-		public boolean isOutlineEnabled() {
-			return outlineEnabled;
-		}
-
-		/**
-		 * @return true if the text letters will be rotated before drawn on the
-		 *         image
-		 */
-		public boolean isRotateEnabled() {
-			return rotateEnabled;
-		}
 	}
 
 	/**
@@ -340,9 +266,11 @@ public class Painter {
 
 		// transform + scale text to better fit the image
 		float wr = width / bw
-				* (rnd.nextFloat() / 20 + (outlineEnabled ? 0.89f : 0.92f));
+				* (rnd.nextFloat() / 20 + (outlineEnabled ? 0.89f : 0.92f))
+				* effectConfig.getScaleConfig().getX();
 		float hr = height / bh
-				* (rnd.nextFloat() / 20 + (outlineEnabled ? 0.68f : 0.75f));
+				* (rnd.nextFloat() / 20 + (outlineEnabled ? 0.68f : 0.75f))
+				* effectConfig.getScaleConfig().getY();
 		g.translate((width - bw * wr) / 2, (height - bh * hr) / 2);
 		g.scale(wr, hr);
 
@@ -402,7 +330,7 @@ public class Painter {
 								- Math.min(preBounds.getWidth(),
 										bounds.getWidth())
 								* (rnd.nextDouble() / 20 + (rotateEnabled ? 0.27
-										: 0.20)), pos.getY());
+										: 0.1)), pos.getY());
 			}
 			v.setGlyphPosition(fi, newPos);
 			prePos = newPos;

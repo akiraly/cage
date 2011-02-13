@@ -22,6 +22,7 @@ import java.util.Random;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.github.cage.image.EffectConfig;
 import com.github.cage.image.Painter;
 import com.github.cage.image.Painter.Quality;
 
@@ -53,8 +54,8 @@ public class CageTest {
 	public void testMax() throws IOException {
 		Random rnd = new Random();
 		testSize(new Cage(new Painter(Painter.DEFAULT_WIDTH,
-				Painter.DEFAULT_HEIGHT, null, null, new Painter.EffectConfig(
-						true, true, true, true), rnd), null, null, null,
+				Painter.DEFAULT_HEIGHT, null, null, new EffectConfig(true,
+						true, true, true, null), rnd), null, null, null,
 				Cage.DEFAULT_COMPRESS_RATIO, null, rnd));
 	}
 

@@ -20,7 +20,9 @@ import java.util.Locale;
 import java.util.Random;
 
 import com.github.cage.image.ConstantColorGenerator;
+import com.github.cage.image.EffectConfig;
 import com.github.cage.image.Painter;
+import com.github.cage.image.ScaleConfig;
 import com.github.cage.token.RandomCharacterGeneratorFactory;
 import com.github.cage.token.RandomTokenGenerator;
 
@@ -51,12 +53,12 @@ public class YCage extends com.github.cage.Cage {
 	 */
 	protected static final char[] TOKEN_DEFAULT_CHARACTER_SET = (new String(
 			RandomCharacterGeneratorFactory.DEFAULT_DEFAULT_CHARACTER_SET)
-			.replaceAll("b|i|j|l|o", "")
+			.replaceAll("b|f|i|j|l|m|o|t", "")
 			+ new String(
 					RandomCharacterGeneratorFactory.DEFAULT_DEFAULT_CHARACTER_SET)
 					.replaceAll("i|o", "").toUpperCase(Locale.ENGLISH) + new String(
-			RandomCharacterGeneratorFactory.ARABIC_NUMERALS).replaceAll("0|1|9",
-			"")).toCharArray();
+			RandomCharacterGeneratorFactory.ARABIC_NUMERALS).replaceAll(
+			"0|1|9", "")).toCharArray();
 
 	/**
 	 * Minimum length of token.
@@ -83,8 +85,8 @@ public class YCage extends com.github.cage.Cage {
 	 *            object used for random value generation. Not null.
 	 */
 	protected YCage(Random rnd) {
-		super(new Painter(WIDTH, HEIGHT, null, null, new Painter.EffectConfig(
-				true, true, true, false), rnd), null,
+		super(new Painter(WIDTH, HEIGHT, null, null, new EffectConfig(true,
+				true, true, false, new ScaleConfig(0.55f, 0.55f)), rnd), null,
 				new ConstantColorGenerator(Color.BLACK), null,
 				Cage.DEFAULT_COMPRESS_RATIO, new RandomTokenGenerator(rnd,
 						new RandomCharacterGeneratorFactory(
