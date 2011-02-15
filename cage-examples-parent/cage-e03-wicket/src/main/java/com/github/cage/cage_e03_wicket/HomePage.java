@@ -15,12 +15,14 @@
  */
 package com.github.cage.cage_e03_wicket;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.wicket.markup.ComponentTag;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.RequiredTextField;
-import org.apache.wicket.markup.html.image.NonCachingImage;
+import org.apache.wicket.markup.html.image.Image;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.request.resource.DynamicImageResource;
 import org.apache.wicket.validation.IValidatable;
@@ -33,7 +35,8 @@ public class HomePage extends WebPage {
 	private static final long serialVersionUID = 3303458191832318970L;
 	private static final Cage cage = new GCage();
 
-	private String token = cage.getTokenGenerator().next();
+	private String token;
+	private boolean tokenUsed;
 	private String captcha;
 	private boolean showGoodResult;
 	private boolean showBadResult;
@@ -102,23 +105,36 @@ public class HomePage extends WebPage {
 			protected void onPost(boolean good) {
 				showGoodResult = good;
 				showBadResult = !good;
-				token = cage.getTokenGenerator().next();
 			}
 		});
 
-		add(new NonCachingImage("captchaImage", new DynamicImageResource(
-				cage.getFormat()) {
-			private static final long serialVersionUID = -1475355045487272906L;
+		add(new Image("captchaImage",
+				new DynamicImageResource(cage.getFormat()) {
+					private static final long serialVersionUID = -1475355045487272906L;
 
-			@Override
-			protected byte[] getImageData(Attributes attributes) {
-				return cage.draw(token);
-			}
-		}));
+					@Override
+					protected void configureResponse(ResourceResponse response,
+							Attributes attributes) {
+						super.configureResponse(response, attributes);
+						if (token == null || tokenUsed)
+							response.setError(HttpServletResponse.SC_NOT_FOUND,
+									"Captcha not found.");
+						response.disableCaching();
+					}
+
+					@Override
+					protected byte[] getImageData(Attributes attributes) {
+						tokenUsed = true;
+						return cage.draw(token);
+					}
+				}));
 	}
 
-	public String getToken() {
-		return token;
+	@Override
+	protected void onConfigure() {
+		super.onConfigure();
+		token = cage.getTokenGenerator().next();
+		tokenUsed = false;
 	}
 
 	public String getCaptcha() {

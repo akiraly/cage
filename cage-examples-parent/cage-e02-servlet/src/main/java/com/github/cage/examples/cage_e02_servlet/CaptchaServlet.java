@@ -48,6 +48,7 @@ public class CaptchaServlet extends HttpServlet {
 		String token = cage.getTokenGenerator().next();
 
 		session.setAttribute("captchaToken", token);
+		markTokenUsed(session, false);
 	}
 
 	/**
@@ -63,12 +64,35 @@ public class CaptchaServlet extends HttpServlet {
 		return val != null ? val.toString() : null;
 	}
 
+	/**
+	 * Marks token as used/unused for image generation.
+	 * 
+	 * @param session
+	 *            where the token usage flag is possibly stored.
+	 * @param used
+	 *            false if the token is not yet used for image generation
+	 */
+	protected static void markTokenUsed(HttpSession session, boolean used) {
+		session.setAttribute("captchaTokenUsed", used);
+	}
+
+	/**
+	 * Checks if the token was used/unused for image generation.
+	 * 
+	 * @param session
+	 *            where the token usage flag is possibly stored.
+	 * @return true if the token was marked as unused in the session
+	 */
+	protected static boolean isTokenUsed(HttpSession session) {
+		return !Boolean.FALSE.equals(session.getAttribute("captchaTokenUsed"));
+	}
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		HttpSession session = req.getSession(false);
 		String token = session != null ? getToken(session) : null;
-		if (token == null) {
+		if (token == null || isTokenUsed(session)) {
 			resp.sendError(HttpServletResponse.SC_NOT_FOUND,
 					"Captcha not found.");
 
@@ -76,6 +100,7 @@ public class CaptchaServlet extends HttpServlet {
 		}
 
 		setResponseHeaders(resp);
+		markTokenUsed(session, true);
 		cage.draw(token, resp.getOutputStream());
 	}
 
@@ -87,11 +112,11 @@ public class CaptchaServlet extends HttpServlet {
 	 */
 	protected void setResponseHeaders(HttpServletResponse resp) {
 		resp.setContentType("image/" + cage.getFormat());
-		resp.setHeader("Cache-Control",
-				"private, no-cache, no-store, must-revalidate");
+		resp.setHeader("Cache-Control", "no-cache, no-store");
 		resp.setHeader("Pragma", "no-cache");
 		long time = System.currentTimeMillis();
 		resp.setDateHeader("Last-Modified", time);
+		resp.setDateHeader("Date", time);
 		resp.setDateHeader("Expires", time);
 	}
 }
