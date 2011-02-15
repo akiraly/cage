@@ -12,26 +12,35 @@ Predefined templates
 [s/i/cg227.jpg] xukelayuhe
 
 	Features of this captcha:
-	
-	* English lower cased alphabet in tokens
-	
-	* white background, random foreground
-	
+
+	* English lower cased alphabet in tokens with a few exception rule
+
+	* 200x70 sized images, text fills image
+
+	* white background, random foreground, random font
+
 	* effects in use: symbol crowding, rotation, ripple (waving), blurring
+
+	* generated image (jpg) size between 2 and 3 KB
 
 * "Y" Template
 
 	This template is modeled after Yahoo's captcha and is represented with the
 	{{{./apidocs/com/github/cage/YCage.html}com.github.cage.YCage}} class.
 
-[s/i/cy213.jpg] MxAtfqK
+[s/i/cy210.jpg] BZkvaau
 
-[s/i/cy230.jpg] 4vM4B8tL
+[s/i/cy219.jpg] B55LhrEB
 
 	Features of this captcha:
-	
+
 	* English lower and upper cased alphabet plus Arabic numerals in tokens
-	
-	* white background, black foreground
-	
+	with a few exception rule
+
+	* 290x80 sized images, text fills about half of the image
+
+	* white background, black foreground, random font
+
 	* effects in use: symbol crowding, outline shadow, ripple (waving), blurring
+
+	* generated image (jpg) size between 2 and 2.5 KB

@@ -229,8 +229,9 @@ public class PainterSpeedTest {
 		System.out.println("name = \"" + name + "\", avg. time (ms) = " + avgMs
 				+ ", limit time (ms) = " + limitMs);
 
-		Assert.assertTrue("Speed is too slow, limit (ms) = " + limitMs
-				+ ", avg. runTime (ms) = " + avgMs, limitMs > avgMs);
+		Assert.assertTrue("Speed is too slow name = \"" + name
+				+ "\", avg. time (ms) = " + avgMs + ", limit time (ms) = "
+				+ limitMs, limitMs > avgMs);
 	}
 
 	/**
