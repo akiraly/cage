@@ -4,7 +4,7 @@
 <HEAD>
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <TITLE>
-Rippler.AxisConfig (CAptcha GEnerator 1.0-SNAPSHOT API)
+ScaleConfig (CAptcha GEnerator 1.0-SNAPSHOT API)
 </TITLE>
 
 
@@ -14,7 +14,7 @@ Rippler.AxisConfig (CAptcha GEnerator 1.0-SNAPSHOT API)
 function windowTitle()
 {
     if (location.href.indexOf('is-external=true') == -1) {
-        parent.document.title="Rippler.AxisConfig (CAptcha GEnerator 1.0-SNAPSHOT API)";
+        parent.document.title="ScaleConfig (CAptcha GEnerator 1.0-SNAPSHOT API)";
     }
 }
 </SCRIPT>
@@ -39,7 +39,7 @@ function windowTitle()
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../overview-summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Class</B></FONT>&nbsp;</TD>
-  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/Rippler.AxisConfig.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/ScaleConfig.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-tree.html"><FONT CLASS="NavBarFont1"><B>Tree</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../index-all.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
@@ -54,11 +54,11 @@ function windowTitle()
 
 <TR>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-&nbsp;<A HREF="../../../../com/github/cage/image/Rippler.html" title="class in com.github.cage.image"><B>PREV CLASS</B></A>&nbsp;
-&nbsp;<A HREF="../../../../com/github/cage/image/ScaleConfig.html" title="class in com.github.cage.image"><B>NEXT CLASS</B></A></FONT></TD>
+&nbsp;<A HREF="../../../../com/github/cage/image/Rippler.AxisConfig.html" title="class in com.github.cage.image"><B>PREV CLASS</B></A>&nbsp;
+&nbsp;NEXT CLASS</FONT></TD>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-  <A HREF="../../../../index.html?com/github/cage/image/Rippler.AxisConfig.html" target="_top"><B>FRAMES</B></A>  &nbsp;
-&nbsp;<A HREF="Rippler.AxisConfig.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
+  <A HREF="../../../../index.html?com/github/cage/image/ScaleConfig.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+&nbsp;<A HREF="ScaleConfig.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
 &nbsp;<SCRIPT type="text/javascript">
   <!--
   if(window==top) {
@@ -89,24 +89,26 @@ DETAIL:&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&n
 <FONT SIZE="-1">
 com.github.cage.image</FONT>
 <BR>
-Class Rippler.AxisConfig</H2>
+Class ScaleConfig</H2>
 <PRE>
 <A HREF="http://download.oracle.com/javase/1.5.0/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</A>
-  <IMG SRC="../../../../resources/inherit.gif" ALT="extended by "><B>com.github.cage.image.Rippler.AxisConfig</B>
+  <IMG SRC="../../../../resources/inherit.gif" ALT="extended by "><B>com.github.cage.image.ScaleConfig</B>
 </PRE>
-<DL>
-<DT><B>Enclosing class:</B><DD><A HREF="../../../../com/github/cage/image/Rippler.html" title="class in com.github.cage.image">Rippler</A></DD>
-</DL>
 <HR>
 <DL>
-<DT><PRE>public static class <B>Rippler.AxisConfig</B><DT>extends <A HREF="http://download.oracle.com/javase/1.5.0/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</A></DL>
+<DT><PRE>public class <B>ScaleConfig</B><DT>extends <A HREF="http://download.oracle.com/javase/1.5.0/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</A></DL>
 </PRE>
 
 <P>
-Class to respresent wave tranforming information for an axis.
+Used by <A HREF="../../../../com/github/cage/image/EffectConfig.html" title="class in com.github.cage.image"><CODE>EffectConfig</CODE></A> to hold the scaling scalars for the captcha
+ image.
 <P>
 
 <P>
+<DL>
+<DT><B>Author:</B></DT>
+  <DD>akiraly</DD>
+</DL>
 <HR>
 
 <P>
@@ -120,9 +122,14 @@ Class to respresent wave tranforming information for an axis.
 <B>Constructor Summary</B></FONT></TH>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE><B><A HREF="../../../../com/github/cage/image/Rippler.AxisConfig.html#Rippler.AxisConfig(double, double, double)">Rippler.AxisConfig</A></B>(double&nbsp;start,
-                   double&nbsp;length,
-                   double&nbsp;amplitude)</CODE>
+<TD><CODE><B><A HREF="../../../../com/github/cage/image/ScaleConfig.html#ScaleConfig()">ScaleConfig</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Constructor.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><B><A HREF="../../../../com/github/cage/image/ScaleConfig.html#ScaleConfig(float, float)">ScaleConfig</A></B>(float&nbsp;x,
+            float&nbsp;y)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Constructor.</TD>
@@ -139,36 +146,19 @@ Class to respresent wave tranforming information for an axis.
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;double</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/github/cage/image/Rippler.AxisConfig.html#getAmplitude()">getAmplitude</A></B>()</CODE>
+<CODE>&nbsp;float</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/github/cage/image/ScaleConfig.html#getX()">getX</A></B>()</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;double</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/github/cage/image/Rippler.AxisConfig.html#getLength()">getLength</A></B>()</CODE>
+<CODE>&nbsp;float</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/github/cage/image/ScaleConfig.html#getY()">getY</A></B>()</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;double</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/github/cage/image/Rippler.AxisConfig.html#getStart()">getStart</A></B>()</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>protected &nbsp;double</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/github/cage/image/Rippler.AxisConfig.html#normalize(double, int)">normalize</A></B>(double&nbsp;a,
-          int&nbsp;multi)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Normalizes parameter to fall into [0, multi * <A HREF="http://download.oracle.com/javase/1.5.0/docs/api/java/lang/Math.html?is-external=true#PI" title="class or interface in java.lang"><CODE>Math.PI</CODE></A>].</TD>
 </TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_java.lang.Object"><!-- --></A>
@@ -193,21 +183,28 @@ Class to respresent wave tranforming information for an axis.
 </TR>
 </TABLE>
 
-<A NAME="Rippler.AxisConfig(double, double, double)"><!-- --></A><H3>
-Rippler.AxisConfig</H3>
+<A NAME="ScaleConfig()"><!-- --></A><H3>
+ScaleConfig</H3>
 <PRE>
-public <B>Rippler.AxisConfig</B>(double&nbsp;start,
-                          double&nbsp;length,
-                          double&nbsp;amplitude)</PRE>
+public <B>ScaleConfig</B>()</PRE>
+<DL>
+<DD>Constructor.
+<P>
+</DL>
+<HR>
+
+<A NAME="ScaleConfig(float, float)"><!-- --></A><H3>
+ScaleConfig</H3>
+<PRE>
+public <B>ScaleConfig</B>(float&nbsp;x,
+                   float&nbsp;y)</PRE>
 <DL>
 <DD>Constructor.
 <P>
 <DL>
-<DT><B>Parameters:</B><DD><CODE>start</CODE> - the starting x offset to generate wave values. Should be
-            between 0 and 2 * <A HREF="http://download.oracle.com/javase/1.5.0/docs/api/java/lang/Math.html?is-external=true#PI" title="class or interface in java.lang"><CODE>Math.PI</CODE></A>.<DD><CODE>length</CODE> - the length of x to be used to generate wave values. Should
-            be between 0 and 4 * <A HREF="http://download.oracle.com/javase/1.5.0/docs/api/java/lang/Math.html?is-external=true#PI" title="class or interface in java.lang"><CODE>Math.PI</CODE></A>.<DD><CODE>amplitude</CODE> - the maximum y value, if it is too big, some important
-            parts of the image (like the text) can "wave" out on the
-            top or on the bottom of the image.</DL>
+<DT><B>Parameters:</B><DD><CODE>x</CODE> - a value in [0f, 1f]. 1 means the captcha will fill the whole
+            width of the picture.<DD><CODE>y</CODE> - a value in [0f, 1f]. 1 means the captcha will fill the whole
+            height of the picture.</DL>
 </DL>
 
 <!-- ============ METHOD DETAIL ========== -->
@@ -220,53 +217,26 @@ public <B>Rippler.AxisConfig</B>(double&nbsp;start,
 </TR>
 </TABLE>
 
-<A NAME="normalize(double, int)"><!-- --></A><H3>
-normalize</H3>
+<A NAME="getX()"><!-- --></A><H3>
+getX</H3>
 <PRE>
-protected double <B>normalize</B>(double&nbsp;a,
-                           int&nbsp;multi)</PRE>
+public float <B>getX</B>()</PRE>
 <DL>
-<DD>Normalizes parameter to fall into [0, multi * <A HREF="http://download.oracle.com/javase/1.5.0/docs/api/java/lang/Math.html?is-external=true#PI" title="class or interface in java.lang"><CODE>Math.PI</CODE></A>].
-<P>
 <DD><DL>
-<DT><B>Parameters:</B><DD><CODE>a</CODE> - to be normalized<DD><CODE>multi</CODE> - multiplicator used for end value
-<DT><B>Returns:</B><DD>normalized value</DL>
+
+<DT><B>Returns:</B><DD>scale by the x axis</DL>
 </DD>
 </DL>
 <HR>
 
-<A NAME="getStart()"><!-- --></A><H3>
-getStart</H3>
+<A NAME="getY()"><!-- --></A><H3>
+getY</H3>
 <PRE>
-public double <B>getStart</B>()</PRE>
+public float <B>getY</B>()</PRE>
 <DL>
 <DD><DL>
 
-<DT><B>Returns:</B><DD>wave part start value</DL>
-</DD>
-</DL>
-<HR>
-
-<A NAME="getLength()"><!-- --></A><H3>
-getLength</H3>
-<PRE>
-public double <B>getLength</B>()</PRE>
-<DL>
-<DD><DL>
-
-<DT><B>Returns:</B><DD>wave part length</DL>
-</DD>
-</DL>
-<HR>
-
-<A NAME="getAmplitude()"><!-- --></A><H3>
-getAmplitude</H3>
-<PRE>
-public double <B>getAmplitude</B>()</PRE>
-<DL>
-<DD><DL>
-
-<DT><B>Returns:</B><DD>amplitude used to transform the wave part</DL>
+<DT><B>Returns:</B><DD>scale by the y axis</DL>
 </DD>
 </DL>
 <!-- ========= END OF CLASS DATA ========= -->
@@ -285,7 +255,7 @@ public double <B>getAmplitude</B>()</PRE>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../overview-summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Class</B></FONT>&nbsp;</TD>
-  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/Rippler.AxisConfig.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/ScaleConfig.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-tree.html"><FONT CLASS="NavBarFont1"><B>Tree</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../index-all.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
@@ -300,11 +270,11 @@ public double <B>getAmplitude</B>()</PRE>
 
 <TR>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-&nbsp;<A HREF="../../../../com/github/cage/image/Rippler.html" title="class in com.github.cage.image"><B>PREV CLASS</B></A>&nbsp;
-&nbsp;<A HREF="../../../../com/github/cage/image/ScaleConfig.html" title="class in com.github.cage.image"><B>NEXT CLASS</B></A></FONT></TD>
+&nbsp;<A HREF="../../../../com/github/cage/image/Rippler.AxisConfig.html" title="class in com.github.cage.image"><B>PREV CLASS</B></A>&nbsp;
+&nbsp;NEXT CLASS</FONT></TD>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-  <A HREF="../../../../index.html?com/github/cage/image/Rippler.AxisConfig.html" target="_top"><B>FRAMES</B></A>  &nbsp;
-&nbsp;<A HREF="Rippler.AxisConfig.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
+  <A HREF="../../../../index.html?com/github/cage/image/ScaleConfig.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+&nbsp;<A HREF="ScaleConfig.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
 &nbsp;<SCRIPT type="text/javascript">
   <!--
   if(window==top) {

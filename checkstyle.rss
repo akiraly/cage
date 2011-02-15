@@ -8,7 +8,7 @@
     <language>en-us</language>
     <copyright>&#169;2011</copyright>
     <item>
-      <title>File: 15,
+      <title>File: 17,
              Errors: 8,
              Warnings: 0,
              Infos: 0
@@ -44,6 +44,20 @@
                           <tr>
                 <td>
                   <a href="http://akiraly.github.com/cage/checkstyle.html#com.github.cage.package-info.java">com/github/cage/package-info.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://akiraly.github.com/cage/checkstyle.html#com.github.cage.image.ScaleConfig.java">com/github/cage/image/ScaleConfig.java</a>
                 </td>
                 <td>
                   0
@@ -165,6 +179,20 @@
                 </td>
                 <td>
                   3
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://akiraly.github.com/cage/checkstyle.html#com.github.cage.image.EffectConfig.java">com/github/cage/image/EffectConfig.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
                 </td>
               </tr>
                           <tr>
