@@ -21,6 +21,7 @@ or at least very hard for a computer." />
 			<item name="QuickStart" href="quickstart.html" />
 			<item name="Templates" href="templates.html" />
 			<item name="Examples" href="examples.html" />
+			<item name="Tips for Captcha Usage" href="tips.html" />
 			<item name="Download" href="download.html" />
 			<item name="Help &amp; Feedback" href="help_and_feedback.html" />
 			<item name="Javadoc" href="apidocs/index.html" />
@@ -34,6 +35,7 @@ or at least very hard for a computer." />
 				<item name="Servlet" href="e02_servlet.html" />
 				<item name="Wicket" href="e03_wicket.html" />
 			</item>
+			<item name="Tips for Captcha Usage" href="tips.html" />
 			<item name="Download" href="download.html" />
 			<item name="Help &amp; Feedback" href="help_and_feedback.html" />
 			<item name="Javadoc" href="apidocs/index.html" />

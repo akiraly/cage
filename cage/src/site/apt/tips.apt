@@ -1,0 +1,88 @@
+Tips for Captcha Usage
+
+	Captcha gives the feeling of security but app integration errors could be
+	made and those could enable the complete bypass of the captcha check.
+
+	These are some recommendations to keep in mind when implementing captcha on
+	a web site.
+
+* An ordinary request flow
+
+	When an ordinary user (not an attacker) tries to use a captcha secured page
+	the following requests take place:
+
+	[[1]] GET request for the html page, containing reference to captcha image
+
+	[[2]] GET request for captcha image
+
+	[[3]] POST of the form with the user provided captcha text. If the user
+	input does not match the server side token back to 1. Otherwise the user
+	passed the test.
+
+	[]
+
+	The server does the logic during these requests. An attacker can play with
+	the requests and call them in different order or several times or just
+	skip some of them.
+
+	Now let see what tasks the server has to do so the above flow can be
+	safely fulfilled.
+
+* Generate token
+
+	Tokens should be generated during the 1. request and during the 3. request
+	after validation (even if there was no error). This is important because if
+	a new token is not generated when the validation fails the attacker can
+	just retry against the same	challenge. Also if the token is not regenerated
+	(or invalidated) after a successful validation the attacker can repost
+	automatically because the challenge remained the same and the solution for
+	that is already known.
+
+* Generate image
+
+	This is done during the 2. request.
+	
+	The token should only be used once to generate an image. Otherwise an
+	attacker can ask for new images about the same token which makes automatic
+	image recognition easier. So after render the token should be marked as
+	used (but should not be invalidated because in that case there is no way to
+	validate during the 3. request). If there is no token or it was already used
+	sending an error (like 404) is a good solution.
+
+	Some could say why not generate the token and the image in the same 2.
+	request? This can also be a good solution but some caution is needed this
+	time too.
+
+	* Calling the 2. request more than once without a request to the 1. is
+	not an ordinary flow. The server should detect and handle unordinary flows
+	as fast as possible with the least resources. Generating a new image is not
+	the fastest	solution.
+
+	* If the attacker skips the 2. request and does not post a user input in the
+	3. request the server can end up with null input and null token. If
+	comparing the input and the token is done with something like Commons Lang's
+	StringUtils.equals() or StringUtils.equalsIgnoreCase() this means that the
+	attacker can simply bypass the captcha check. Make sure that the token is
+	not null.
+
+	* Still need to invalidate the token during the 3. request after validation
+	(even when there was no error).
+
+* Tips to make the captcha more convenient for the web visitors
+
+	* If the tokens include mixed case letters (like the "Y" template in Cage)
+	ignore case when comparing it with the user input. Enforcing case
+	sensitivity does not give to the security but it annoys the users.
+
+	* If captcha is used on a login form it should not be visible on the first
+	request. Only after the user made an error on the first try. This way most
+	of the users will not ever see the captcha (and removes some load from the
+	server because less dynamic image needs to be generated). This error
+	counting should be based on the client IP and/or user name and not solely on
+	the session. (This is used for example at GMail login screen.)
+
+	* Give users an icon/link to ajax request a new captcha. Cage is trying to
+	generate human readable images but sometimes it could be ambiguous to the
+	user. In cases like this, if the user can ask for a new challenge without
+	posting the form, the app will give a more pleasant user experience.
+	(This is used for example at Yahoo registration screen.)
