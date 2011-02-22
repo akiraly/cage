@@ -145,6 +145,7 @@ Cage is a CAPTCHA image generator java library. It is fast, small and simple.
 					<version>${maven.javadoc.plugin.version}</version>
 					<configuration>
 						<aggregate>true</aggregate>
+						<detectOfflineLinks>false</detectOfflineLinks>
 						<notimestamp>true</notimestamp>
 						<quiet>true</quiet>
 						<links>
