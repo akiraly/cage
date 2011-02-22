@@ -3,7 +3,7 @@ Examples
 	The following examples are available:
 
 	* {{{./e01_simple.html}Simple}}: a short command line program demonstrating
-	how you can use a few hundred captcha images.
+	how you can use cage to generate a few hundred captcha images.
 
 	* {{{./e02_servlet.html}Servlet}}: a small web application integrating Cage
 	as captcha service.

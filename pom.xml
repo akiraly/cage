@@ -154,7 +154,6 @@ Cage is a CAPTCHA image generator java library. It is fast, small and simple.
 					<executions>
 						<execution>
 							<id>attach-javadoc</id>
-							<phase>verify</phase>
 							<goals>
 								<goal>jar</goal>
 							</goals>
@@ -252,7 +251,6 @@ Cage is a CAPTCHA image generator java library. It is fast, small and simple.
 					<executions>
 						<execution>
 							<id>attach-sources</id>
-							<phase>verify</phase>
 							<goals>
 								<goal>jar-no-fork</goal>
 							</goals>
