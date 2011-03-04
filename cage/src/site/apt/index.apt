@@ -1,7 +1,6 @@
-Note
+4 March 2011 - Cage 1.0 released
 
-	Cage is not released yet so you can not download it. The site is also a work
-	in progress.
+	The first public release of Cage is now available from maven central.
 
 About Cage
 
@@ -13,7 +12,7 @@ About Cage
 
 [s/i/cy215.jpg] ug3Aykun
 
-* Features
+Features
 
 	* it is open source, {{{./license.html}Apache v2}} licensed so it can be
 	used in enterprise/proprietary projects too

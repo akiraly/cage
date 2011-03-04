@@ -1,5 +1,7 @@
 Download
 
+	The latest stable version is 1.0.
+
 * Release
 
 	Cage releases are published to maven central. If you use maven just add this
