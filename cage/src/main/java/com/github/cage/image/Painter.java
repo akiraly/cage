@@ -111,7 +111,7 @@ public class Painter {
 		super();
 		this.width = width;
 		this.height = height;
-		this.background = bGround != null ? bGround : Color.WHITE;
+		background = bGround != null ? bGround : Color.WHITE;
 		this.quality = quality != null ? quality : Quality.MAX;
 		this.effectConfig = effectConfig != null ? effectConfig
 				: new EffectConfig();
@@ -130,22 +130,19 @@ public class Painter {
 	 * @return the generated image
 	 */
 	public BufferedImage draw(Font font, Color fGround, String text) {
-		if (font == null) {
+		if (font == null)
 			throw new IllegalArgumentException("Font can not be null.");
-		}
-		if (fGround == null) {
+		if (fGround == null)
 			throw new IllegalArgumentException(
 					"Foreground color can not be null.");
-		}
-		if (text == null || text.length() < 1) {
+		if (text == null || text.length() < 1)
 			throw new IllegalArgumentException("No text given.");
-		}
 
 		BufferedImage img = createImage();
 
-		Graphics g = img.getGraphics();
+		final Graphics g = img.getGraphics();
 		try {
-			Graphics2D g2 = configureGraphics(g, font, fGround);
+			final Graphics2D g2 = configureGraphics(g, font, fGround);
 
 			draw(g2, text);
 		} finally {
@@ -181,11 +178,10 @@ public class Painter {
 	 *         instance of {@link Graphics2D}.
 	 */
 	protected Graphics2D configureGraphics(Graphics g, Font font, Color fGround) {
-		if (!(g instanceof Graphics2D)) {
+		if (!(g instanceof Graphics2D))
 			throw new IllegalStateException("Graphics (" + g
 					+ ") that is not an instance of Graphics2D.");
-		}
-		Graphics2D g2 = (Graphics2D) g;
+		final Graphics2D g2 = (Graphics2D) g;
 
 		configureGraphicsQuality(g2);
 
@@ -253,35 +249,34 @@ public class Painter {
 	 *            to be drawn
 	 */
 	protected void draw(Graphics2D g, String text) {
-		GlyphVector vector = g.getFont().createGlyphVector(
+		final GlyphVector vector = g.getFont().createGlyphVector(
 				g.getFontRenderContext(), text);
 
 		transform(g, text, vector);
 
-		Rectangle bounds = vector.getPixelBounds(null, 0, height);
-		float bw = (float) bounds.getWidth();
-		float bh = (float) bounds.getHeight();
+		final Rectangle bounds = vector.getPixelBounds(null, 0, height);
+		final float bw = (float) bounds.getWidth();
+		final float bh = (float) bounds.getHeight();
 
-		boolean outlineEnabled = effectConfig.isOutlineEnabled();
+		final boolean outlineEnabled = effectConfig.isOutlineEnabled();
 
 		// transform + scale text to better fit the image
-		float wr = width / bw
+		final float wr = width / bw
 				* (rnd.nextFloat() / 20 + (outlineEnabled ? 0.89f : 0.92f))
 				* effectConfig.getScaleConfig().getX();
-		float hr = height / bh
+		final float hr = height / bh
 				* (rnd.nextFloat() / 20 + (outlineEnabled ? 0.68f : 0.75f))
 				* effectConfig.getScaleConfig().getY();
 		g.translate((width - bw * wr) / 2, (height - bh * hr) / 2);
 		g.scale(wr, hr);
 
-		float bx = (float) bounds.getX();
-		float by = (float) bounds.getY();
+		final float bx = (float) bounds.getX();
+		final float by = (float) bounds.getY();
 		// draw outline if needed
-		if (outlineEnabled) {
+		if (outlineEnabled)
 			g.draw(vector.getOutline(Math.signum(rnd.nextFloat() - 0.5f) * 1
 					* width / 200 - bx, Math.signum(rnd.nextFloat() - 0.5f) * 1
 					* height / 70 + height - by));
-		}
 		g.drawGlyphVector(vector, -bx, height - by);
 	}
 
@@ -296,7 +291,7 @@ public class Painter {
 	 *            graphical representation of text, to be transformed
 	 */
 	protected void transform(Graphics2D g, String text, GlyphVector v) {
-		int glyphNum = v.getNumGlyphs();
+		final int glyphNum = v.getNumGlyphs();
 
 		Point2D prePos = null;
 		Rectangle2D preBounds = null;
@@ -304,25 +299,24 @@ public class Painter {
 		double rotateCur = (rnd.nextDouble() - 0.5) * Math.PI / 8;
 		double rotateStep = Math.signum(rotateCur)
 				* (rnd.nextDouble() * 3 * Math.PI / 8 / glyphNum);
-		boolean rotateEnabled = effectConfig.isRotateEnabled();
+		final boolean rotateEnabled = effectConfig.isRotateEnabled();
 
 		for (int fi = 0; fi < glyphNum; fi++) {
 			if (rotateEnabled) {
-				AffineTransform tr = AffineTransform
+				final AffineTransform tr = AffineTransform
 						.getRotateInstance(rotateCur);
-				if (rnd.nextDouble() < 0.25) {
+				if (rnd.nextDouble() < 0.25)
 					rotateStep *= -1;
-				}
 				rotateCur += rotateStep;
 				v.setGlyphTransform(fi, tr);
 			}
-			Point2D pos = v.getGlyphPosition(fi);
-			Rectangle2D bounds = v.getGlyphVisualBounds(fi).getBounds2D();
+			final Point2D pos = v.getGlyphPosition(fi);
+			final Rectangle2D bounds = v.getGlyphVisualBounds(fi).getBounds2D();
 			Point2D newPos;
-			if (prePos == null) {
+			if (prePos == null)
 				newPos = new Point2D.Double(pos.getX() - bounds.getX(),
 						pos.getY());
-			} else {
+			else
 				newPos = new Point2D.Double(
 						preBounds.getMaxX()
 								+ pos.getX()
@@ -331,7 +325,6 @@ public class Painter {
 										bounds.getWidth())
 								* (rnd.nextDouble() / 20 + (rotateEnabled ? 0.27
 										: 0.1)), pos.getY());
-			}
 			v.setGlyphPosition(fi, newPos);
 			prePos = newPos;
 			preBounds = v.getGlyphVisualBounds(fi).getBounds2D();
@@ -348,20 +341,20 @@ public class Painter {
 	 */
 	protected BufferedImage postProcess(BufferedImage img) {
 		if (effectConfig.isRippleEnabled()) {
-			Rippler.AxisConfig vertical = new Rippler.AxisConfig(
+			final Rippler.AxisConfig vertical = new Rippler.AxisConfig(
 					rnd.nextDouble() * 2 * Math.PI, (1 + rnd.nextDouble() * 2)
 							* Math.PI, img.getHeight() / 10.0);
-			Rippler.AxisConfig horizontal = new Rippler.AxisConfig(
+			final Rippler.AxisConfig horizontal = new Rippler.AxisConfig(
 					rnd.nextDouble() * 2 * Math.PI, (2 + rnd.nextDouble() * 2)
 							* Math.PI, img.getWidth() / 100.0);
-			Rippler op = new Rippler(vertical, horizontal);
+			final Rippler op = new Rippler(vertical, horizontal);
 
 			img = op.filter(img, createImage());
 		}
 		if (effectConfig.isBlurEnabled()) {
-			float[] blurArray = new float[9];
+			final float[] blurArray = new float[9];
 			fillBlurArray(blurArray);
-			ConvolveOp op = new ConvolveOp(new Kernel(3, 3, blurArray),
+			final ConvolveOp op = new ConvolveOp(new Kernel(3, 3, blurArray),
 					ConvolveOp.EDGE_NO_OP, null);
 
 			img = op.filter(img, createImage());
@@ -381,9 +374,8 @@ public class Painter {
 			array[fi] = rnd.nextFloat();
 			sum += array[fi];
 		}
-		for (int fi = 0; fi < array.length; fi++) {
+		for (int fi = 0; fi < array.length; fi++)
 			array[fi] /= sum;
-		}
 	}
 
 	/**

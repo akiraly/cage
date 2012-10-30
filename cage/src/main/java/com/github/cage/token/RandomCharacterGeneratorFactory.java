@@ -72,21 +72,20 @@ public class RandomCharacterGeneratorFactory implements
 	public class RandomCharacterGenerator implements IGenerator<Character> {
 		private char[] currentCharacterSet = defaultCharacterSet;
 
+		@Override
 		public Character next() {
-			char next = currentCharacterSet[rnd
+			final char next = currentCharacterSet[rnd
 					.nextInt(currentCharacterSet.length)];
 
 			if (specialCharacterSets != null) {
-				char[] nextCharacterSet = specialCharacterSets.get(next);
+				final char[] nextCharacterSet = specialCharacterSets.get(next);
 				if (nextCharacterSet != null) {
-					if (nextCharacterSet.length < 1) {
+					if (nextCharacterSet.length < 1)
 						throw new IllegalStateException(
 								"specialCharacterSets should not hold an empty char[] value");
-					}
 					currentCharacterSet = nextCharacterSet;
-				} else {
+				} else
 					currentCharacterSet = defaultCharacterSet;
-				}
 			}
 
 			return next;
@@ -142,12 +141,12 @@ public class RandomCharacterGeneratorFactory implements
 	 * @return populated map
 	 */
 	protected static Map<Character, char[]> createDefaultSpecialCharacterSets() {
-		Map<Character, char[]> m = new HashMap<Character, char[]>();
+		final Map<Character, char[]> m = new HashMap<Character, char[]>();
 
-		char[] con = ENGLISH_CONSONANTS;
-		String conS = new String(con);
-		char[] vow = ENGLISH_VOWELS;
-		String vowS = new String(vow);
+		final char[] con = ENGLISH_CONSONANTS;
+		final String conS = new String(con);
+		final char[] vow = ENGLISH_VOWELS;
+		final String vowS = new String(vow);
 
 		m.put('a', con);
 		m.put('b', vow);
@@ -179,6 +178,7 @@ public class RandomCharacterGeneratorFactory implements
 		return m;
 	}
 
+	@Override
 	public IGenerator<Character> next() {
 		return new RandomCharacterGenerator();
 	}

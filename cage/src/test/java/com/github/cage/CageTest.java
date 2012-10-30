@@ -52,7 +52,7 @@ public class CageTest {
 	 */
 	@Test
 	public void testMax() throws IOException {
-		Random rnd = new Random();
+		final Random rnd = new Random();
 		testSize(new Cage(new Painter(Painter.DEFAULT_WIDTH,
 				Painter.DEFAULT_HEIGHT, null, null, new EffectConfig(true,
 						true, true, true, null), rnd), null, null, null,
@@ -92,7 +92,7 @@ public class CageTest {
 	 */
 	protected void testSize(Cage cage) throws IOException {
 		for (int fi = 0; fi < 100; fi++) {
-			ByteArrayOutputStream baos = new ByteArrayOutputStream(1024);
+			final ByteArrayOutputStream baos = new ByteArrayOutputStream(1024);
 			try {
 				cage.draw("sometext", baos);
 				Assert.assertTrue(

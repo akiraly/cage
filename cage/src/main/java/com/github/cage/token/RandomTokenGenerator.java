@@ -116,14 +116,16 @@ public class RandomTokenGenerator implements IGenerator<String> {
 		this.rnd = rnd != null ? rnd : new Random();
 	}
 
+	@Override
 	public String next() {
-		int length = (delta <= 1 ? 0 : rnd.nextInt(delta) + 1) + minLength;
-		char[] word = new char[length];
-		IGenerator<Character> generator = characterGeneratorFactory.next();
+		final int length = (delta <= 1 ? 0 : rnd.nextInt(delta) + 1)
+				+ minLength;
+		final char[] word = new char[length];
+		final IGenerator<Character> generator = characterGeneratorFactory
+				.next();
 
-		for (int fi = 0; fi < word.length; fi++) {
+		for (int fi = 0; fi < word.length; fi++)
 			word[fi] = generator.next();
-		}
 
 		return new String(word);
 	}

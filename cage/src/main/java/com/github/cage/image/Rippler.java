@@ -65,10 +65,10 @@ public class Rippler {
 		 * @return normalized value
 		 */
 		protected double normalize(double a, int multi) {
-			double piMulti = multi * Math.PI;
+			final double piMulti = multi * Math.PI;
 
 			a = Math.abs(a);
-			double d = Math.floor(a / piMulti);
+			final double d = Math.floor(a / piMulti);
 
 			return a - d * piMulti;
 		}
@@ -124,20 +124,19 @@ public class Rippler {
 	 * @return dest is returned
 	 */
 	public BufferedImage filter(BufferedImage src, BufferedImage dest) {
-		int width = src.getWidth();
-		int height = src.getHeight();
+		final int width = src.getWidth();
+		final int height = src.getHeight();
 
-		int[] verticalDelta = calcDeltaArray(vertical, width);
+		final int[] verticalDelta = calcDeltaArray(vertical, width);
 
-		int[] horizontalDelta = calcDeltaArray(horizontal, height);
+		final int[] horizontalDelta = calcDeltaArray(horizontal, height);
 
-		for (int x = 0; x < width; x++) {
+		for (int x = 0; x < width; x++)
 			for (int y = 0; y < height; y++) {
-				int ny = (y + verticalDelta[x] + height) % height;
-				int nx = (x + horizontalDelta[ny] + width) % width;
+				final int ny = (y + verticalDelta[x] + height) % height;
+				final int nx = (x + horizontalDelta[ny] + width) % width;
 				dest.setRGB(nx, ny, src.getRGB(x, y));
 			}
-		}
 
 		return dest;
 	}
@@ -152,16 +151,15 @@ public class Rippler {
 	 * @return the calculated num length delta array
 	 */
 	protected int[] calcDeltaArray(AxisConfig axisConfig, int num) {
-		int[] delta = new int[num];
+		final int[] delta = new int[num];
 
-		double start = axisConfig.getStart();
-		double period = axisConfig.getLength() / num;
-		double amplitude = axisConfig.getAmplitude();
+		final double start = axisConfig.getStart();
+		final double period = axisConfig.getLength() / num;
+		final double amplitude = axisConfig.getAmplitude();
 
-		for (int fi = 0; fi < num; fi++) {
+		for (int fi = 0; fi < num; fi++)
 			delta[fi] = (int) Math.round(amplitude
 					* Math.sin(start + fi * period));
-		}
 
 		return delta;
 	}

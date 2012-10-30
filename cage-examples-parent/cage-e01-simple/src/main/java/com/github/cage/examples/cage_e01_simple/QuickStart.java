@@ -30,9 +30,9 @@ import com.github.cage.GCage;
  */
 public class QuickStart {
 	public static void main(String[] args) throws IOException {
-		Cage cage = new GCage();
+		final Cage cage = new GCage();
 
-		OutputStream os = new FileOutputStream("captcha.jpg", false);
+		final OutputStream os = new FileOutputStream("captcha.jpg", false);
 		try {
 			cage.draw(cage.getTokenGenerator().next(), os);
 		} finally {

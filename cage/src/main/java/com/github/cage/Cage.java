@@ -119,11 +119,10 @@ public class Cage {
 	public Cage(Painter painter, IGenerator<Font> fonts,
 			IGenerator<Color> foregrounds, String format, Float compressRatio,
 			IGenerator<String> tokenGenerator, Random rnd) {
-		if (rnd == null) {
+		if (rnd == null)
 			rnd = new Random();
-		}
 		this.painter = painter != null ? painter : new Painter(rnd);
-		int defFontHeight = this.painter.getHeight() / 2;
+		final int defFontHeight = this.painter.getHeight() / 2;
 		this.fonts = fonts != null ? fonts : new ObjectRoulette<Font>(rnd, //
 				new Font(Font.SANS_SERIF, Font.PLAIN, defFontHeight), //
 				// new Font(Font.SANS_SERIF, Font.ITALIC, defFontHeight),//
@@ -151,7 +150,7 @@ public class Cage {
 	 *             if IO error occurs.
 	 */
 	public void draw(String text, OutputStream ostream) throws IOException {
-		BufferedImage img = drawImage(text);
+		final BufferedImage img = drawImage(text);
 		serialize(img, ostream);
 	}
 
@@ -163,14 +162,14 @@ public class Cage {
 	 * @return byte array holding the serialized generated image
 	 */
 	public byte[] draw(String text) {
-		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		final ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		try {
 			try {
 				draw(text, baos);
 			} finally {
 				baos.close();
 			}
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			// IO errors should not happen we were writing to memory
 			throw new RuntimeException(
 					"IO error while writing captcha image to memory.", e);
@@ -187,8 +186,8 @@ public class Cage {
 	 * @return generated image
 	 */
 	public BufferedImage drawImage(String text) {
-		Font font = fonts.next();
-		Color fground = foregrounds.next();
+		final Font font = fonts.next();
+		final Color fground = foregrounds.next();
 		return painter.draw(font, fground, text);
 	}
 
@@ -205,24 +204,23 @@ public class Cage {
 	 */
 	protected void serialize(BufferedImage img, OutputStream ostream)
 			throws IOException {
-		ImageTypeSpecifier type = ImageTypeSpecifier
+		final ImageTypeSpecifier type = ImageTypeSpecifier
 				.createFromRenderedImage(img);
-		Iterator<ImageWriter> iwi = ImageIO.getImageWriters(type, this.format);
-		if (iwi == null || !iwi.hasNext()) {
+		final Iterator<ImageWriter> iwi = ImageIO.getImageWriters(type, format);
+		if (iwi == null || !iwi.hasNext())
 			throw new IllegalStateException(
-					"No image writer found for format = " + this.format);
-		}
-		ImageWriter iw = iwi.next();
+					"No image writer found for format = " + format);
+		final ImageWriter iw = iwi.next();
 		try {
 			ImageWriteParam iwp;
 			if (compressRatio != null) {
 				iwp = iw.getDefaultWriteParam();
 				iwp.setCompressionMode(ImageWriteParam.MODE_EXPLICIT);
 				iwp.setCompressionQuality(compressRatio);
-			} else {
+			} else
 				iwp = null;
-			}
-			ImageOutputStream ios = ImageIO.createImageOutputStream(ostream);
+			final ImageOutputStream ios = ImageIO
+					.createImageOutputStream(ostream);
 			try {
 				iw.setOutput(ios);
 				iw.write(null, new IIOImage(img, null, null), iwp);

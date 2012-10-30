@@ -41,7 +41,7 @@ public class App {
 	protected static void generate(Cage cage, int num, String namePrefix,
 			String namePostfix, String text) throws IOException {
 		for (int fi = 0; fi < num; fi++) {
-			OutputStream os = new FileOutputStream(namePrefix + fi
+			final OutputStream os = new FileOutputStream(namePrefix + fi
 					+ namePostfix, false);
 			try {
 				cage.draw(

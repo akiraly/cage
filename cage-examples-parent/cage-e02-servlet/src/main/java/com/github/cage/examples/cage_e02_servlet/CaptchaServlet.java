@@ -45,7 +45,7 @@ public class CaptchaServlet extends HttpServlet {
 	 *            where to store the captcha.
 	 */
 	public static void generateToken(HttpSession session) {
-		String token = cage.getTokenGenerator().next();
+		final String token = cage.getTokenGenerator().next();
 
 		session.setAttribute("captchaToken", token);
 		markTokenUsed(session, false);
@@ -59,7 +59,7 @@ public class CaptchaServlet extends HttpServlet {
 	 * @return token or null if there was none
 	 */
 	public static String getToken(HttpSession session) {
-		Object val = session.getAttribute("captchaToken");
+		final Object val = session.getAttribute("captchaToken");
 
 		return val != null ? val.toString() : null;
 	}
@@ -90,8 +90,8 @@ public class CaptchaServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		HttpSession session = req.getSession(false);
-		String token = session != null ? getToken(session) : null;
+		final HttpSession session = req.getSession(false);
+		final String token = session != null ? getToken(session) : null;
 		if (token == null || isTokenUsed(session)) {
 			resp.sendError(HttpServletResponse.SC_NOT_FOUND,
 					"Captcha not found.");
@@ -114,7 +114,7 @@ public class CaptchaServlet extends HttpServlet {
 		resp.setContentType("image/" + cage.getFormat());
 		resp.setHeader("Cache-Control", "no-cache, no-store");
 		resp.setHeader("Pragma", "no-cache");
-		long time = System.currentTimeMillis();
+		final long time = System.currentTimeMillis();
 		resp.setDateHeader("Last-Modified", time);
 		resp.setDateHeader("Date", time);
 		resp.setDateHeader("Expires", time);

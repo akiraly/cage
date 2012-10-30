@@ -41,13 +41,13 @@ public class ObjectRoulette<T> implements IGenerator<T> {
 	 *            the set of objects to choose from; not null, not empty
 	 */
 	public ObjectRoulette(Random rnd, T... candidates) {
-		if (candidates == null || candidates.length < 1) {
+		if (candidates == null || candidates.length < 1)
 			throw new IllegalArgumentException("No candidates given.");
-		}
 		this.candidates = candidates;
 		this.rnd = rnd != null ? rnd : new Random();
 	}
 
+	@Override
 	public T next() {
 		return candidates[rnd.nextInt(candidates.length)];
 	}

@@ -39,6 +39,7 @@ public class ConstantColorGenerator implements IGenerator<Color> {
 		this.color = color;
 	}
 
+	@Override
 	public Color next() {
 		return color;
 	}
