@@ -5,7 +5,7 @@
 	<groupId>com.github.cage</groupId>
 	<artifactId>cage-parent</artifactId>
 	<packaging>pom</packaging>
-	<version>1.1-SNAPSHOT</version>
+	<version>2.0-SNAPSHOT</version>
 
 	<name>CAptcha GEnerator Parent</name>
 	<description>
@@ -62,7 +62,7 @@ Cage is a CAPTCHA image generator java library. It is fast, small and simple.
 	</distributionManagement>
 
 	<properties>
-		<maven.javadoc.plugin.version>2.7</maven.javadoc.plugin.version>
+		<maven.javadoc.plugin.version>2.9</maven.javadoc.plugin.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 	</properties>
@@ -72,7 +72,7 @@ Cage is a CAPTCHA image generator java library. It is fast, small and simple.
 			<dependency>
 				<groupId>junit</groupId>
 				<artifactId>junit</artifactId>
-				<version>4.8.2</version>
+				<version>4.10</version>
 				<scope>test</scope>
 			</dependency>
 		</dependencies>
@@ -98,24 +98,26 @@ Cage is a CAPTCHA image generator java library. It is fast, small and simple.
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-compiler-plugin</artifactId>
-					<version>2.3.2</version>
+					<version>2.5.1</version>
 					<configuration>
-						<source>1.5</source>
-						<target>1.5</target>
+						<source>1.6</source>
+						<target>1.6</target>
+						<debug>true</debug>
 						<optimize>true</optimize>
 						<showDeprecation>true</showDeprecation>
 						<showWarnings>true</showWarnings>
+						<verbose>true</verbose>
 					</configuration>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-deploy-plugin</artifactId>
-					<version>2.5</version>
+					<version>2.7</version>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-gpg-plugin</artifactId>
-					<version>1.1</version>
+					<version>1.4</version>
 					<executions>
 						<execution>
 							<id>sign-artifacts</id>
@@ -129,12 +131,12 @@ Cage is a CAPTCHA image generator java library. It is fast, small and simple.
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-install-plugin</artifactId>
-					<version>2.3.1</version>
+					<version>2.4</version>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-jar-plugin</artifactId>
-					<version>2.3.1</version>
+					<version>2.4</version>
 					<configuration>
 						<useDefaultManifestFile>true</useDefaultManifestFile>
 					</configuration>
@@ -164,7 +166,7 @@ Cage is a CAPTCHA image generator java library. It is fast, small and simple.
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-release-plugin</artifactId>
-					<version>2.1</version>
+					<version>2.3.2</version>
 					<configuration>
 						<autoVersionSubmodules>true</autoVersionSubmodules>
 					</configuration>
@@ -172,12 +174,12 @@ Cage is a CAPTCHA image generator java library. It is fast, small and simple.
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-resources-plugin</artifactId>
-					<version>2.4.3</version>
+					<version>2.6</version>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-site-plugin</artifactId>
-					<version>3.0-beta-3</version>
+					<version>3.2</version>
 					<configuration>
 						<generateReports>false</generateReports>
 						<generateSitemap>false</generateSitemap>
@@ -185,7 +187,7 @@ Cage is a CAPTCHA image generator java library. It is fast, small and simple.
 							<plugin>
 								<groupId>org.apache.maven.plugins</groupId>
 								<artifactId>maven-project-info-reports-plugin</artifactId>
-								<version>2.3.1</version>
+								<version>2.6</version>
 								<configuration>
 									<dependencyDetailsEnabled>false</dependencyDetailsEnabled>
 									<dependencyLocationsEnabled>false</dependencyLocationsEnabled>
@@ -218,7 +220,7 @@ Cage is a CAPTCHA image generator java library. It is fast, small and simple.
 							<plugin>
 								<groupId>org.apache.maven.plugins</groupId>
 								<artifactId>maven-jxr-plugin</artifactId>
-								<version>2.2</version>
+								<version>2.3</version>
 								<configuration>
 									<aggregate>true</aggregate>
 								</configuration>
@@ -229,15 +231,15 @@ Cage is a CAPTCHA image generator java library. It is fast, small and simple.
 							<plugin>
 								<groupId>org.apache.maven.plugins</groupId>
 								<artifactId>maven-pmd-plugin</artifactId>
-								<version>2.5</version>
+								<version>2.7.1</version>
 								<configuration>
-									<targetJdk>1.5</targetJdk>
+									<targetJdk>1.6</targetJdk>
 								</configuration>
 							</plugin>
 							<plugin>
 								<groupId>org.apache.maven.plugins</groupId>
 								<artifactId>maven-checkstyle-plugin</artifactId>
-								<version>2.6</version>
+								<version>2.9.1</version>
 								<configuration>
 									<configLocation>src/site/checkstyle/config.xml</configLocation>
 								</configuration>
@@ -248,7 +250,7 @@ Cage is a CAPTCHA image generator java library. It is fast, small and simple.
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-source-plugin</artifactId>
-					<version>2.1.2</version>
+					<version>2.2.1</version>
 					<executions>
 						<execution>
 							<id>attach-sources</id>
@@ -257,6 +259,15 @@ Cage is a CAPTCHA image generator java library. It is fast, small and simple.
 							</goals>
 						</execution>
 					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>2.12.4</version>
+					<configuration>
+						<parallel>both</parallel>
+						<threadCount>2</threadCount>
+					</configuration>
 				</plugin>
 			</plugins>
 		</pluginManagement>
